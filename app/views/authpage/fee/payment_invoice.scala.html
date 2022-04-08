@@ -1,0 +1,139 @@
+@layout.auth_frame("Fee Payment Invoice",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-6">
+      <h2>Invoice</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="index-2.html">Home</a>
+        </li>
+        <li>
+          Other Pages
+        </li>
+        <li class="active">
+          <strong>Invoice</strong>
+        </li>
+      </ol>
+    </div>
+    <div class="col-lg-6">
+      <div class="title-action">
+        <a href="#" class="btn btn-white"><i class="fa fa-pencil"></i> Edit </a>
+        <a href="#" class="btn btn-info"><i class="fa fa-check "></i> Generate PDF</a>
+        <a href="invoice_print.html" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Print Invoice </a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="invoice-header">
+        <i class="fa fa-globe"></i> @session().get("school_name").
+        <small class="pull-right">Date: 2/10/2017</small>
+      </h2>
+    </div><!-- /.col -->
+    <div class="col-lg-12">
+      <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox-content p-xl">
+          <div class="row">
+            <div class="col-sm-4">
+              SCHOOL
+              <address>
+                <strong> @session().get("school_name"). </strong><br>
+                795 Folsom Ave, Suite 600<br>
+                San Francisco, CA 94107<br>
+                Phone: (804) 123-5432<br/>
+                Email: info@@almasaeedstudio.com
+              </address>
+            </div><!-- /.col -->
+            <div class="col-sm-4" style="right: -50px;">
+              STUDENT
+              <address>
+                <strong>Ibrahim Olanrewaju Abdulsemiu</strong><br>
+                795 Folsom Ave, Suite 600<br>
+                San Francisco, CA 94107<br>
+                Phone: (555) 539-1037<br/>
+                Email: john.doe@@example.com
+              </address>
+            </div><!-- /.col -->
+            <div class="col-sm-4" style="right: -90px;">
+              <address class="text-left">
+                <b>Invoice #007612</b><br/>
+                <b>Payment Mode:</b> CASH<br/>
+                <b>Amount Paid: </b>$ 2049 <br/>
+                <b>Invoice Date:</b> Marh 18, 2014<br/>
+                <b>Pay By:</b> Oladele Olanrewaju Aremu
+              </address>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+          <div class="table-responsive m-t">
+            <table class="table invoice-table">
+              <thead>
+                <tr>
+                  <th>Fee List</th>
+                  <th>Quantity</th>
+                  <th>Unit Price</th>
+                  <th>Tax</th>
+                  <th>Total Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div><strong>Admin Theme with psd project layouts</strong></div>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small></td>
+                  <td>1</td>
+                  <td>$26.00</td>
+                  <td>$5.98</td>
+                  <td>$31,98</td>
+                </tr>
+                <tr>
+                  <td><div><strong>Wodpress Them customization</strong></div>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </small></td>
+                  <td>2</td>
+                  <td>$80.00</td>
+                  <td>$36.80</td>
+                  <td>$196.80</td>
+                </tr>
+                <tr>
+                  <td><div><strong>Angular JS & Node JS Application</strong></div>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small></td>
+                  <td>3</td>
+                  <td>$420.00</td>
+                  <td>$193.20</td>
+                  <td>$1033.20</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div><!-- /table-responsive -->
+
+          <table class="table invoice-total">
+            <tbody>
+              <tr>
+                <td><strong>Sub Total :</strong></td>
+                <td>$1026.00</td>
+              </tr>
+              <tr>
+                <td><strong>TAX :</strong></td>
+                <td>$235.98</td>
+              </tr>
+              <tr>
+                <td><strong>TOTAL :</strong></td>
+                <td>$1261.98</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="well m-t"><strong>Comments</strong>
+            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+          </div>
+          <div class="text-right">
+            <a href="#" class="btn btn-white"><i class="fa fa-pencil"></i> Edit </a>
+            <button class="btn btn-primary"><i class="fa fa-dollar"></i> Submit Payment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@scripts = {
+
+}

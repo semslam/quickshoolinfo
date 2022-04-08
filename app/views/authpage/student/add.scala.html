@@ -1,0 +1,1189 @@
+@import data_services.sch_config.SchConfigServices
+@import api.auth.Auth
+@(schCon: SchConfigServices)
+@layout.auth_frame("Student Admission Form",scripts, "") {
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Wizard</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index-2.html">Dashboard</a>
+                </li>
+                <li>
+                    <a>Student</a>
+                </li>
+                <li class="active">
+                    <strong>Admission Form</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Student Admission Form</h5>
+                        <div class="ibox-tools">
+                            <a class="btn btn-primary">
+                                <i class="fa fa-plus "></i>
+                                Students Table
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                    @helper.form(action = controllers.student.routes.AdmissionCtr.insertStudent(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+                        <h1>Student</h1>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                            <div class="form-group col-md-4">
+                                                <label>Admission No</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-id-card-o" ></i></span>
+                                                    <input  type="text" name="students.admissionNo" class="form-control required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4 data_1" >
+                                                <label>Admission Date</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="text" name="students.admissionDate" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Student Type</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                                                    <select name="students.studentType" class="form-control required">
+                                                        <option value="">Select One</option>
+                                                        <option value="stStaff">staff student</option>
+                                                        <option value="Scholarships">Scholarships</option>
+                                                        <option value="Free">Free</option>
+                                                        <option value="Discount">Discount</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>First Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input  type="text" name="students.firstName" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Middle Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input  type="text" name="students.middleName" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Last Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input  type="text" name="students.lastName" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Gender</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                                                    <select name="students.gender" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4 data_1" >
+                                                <label>Date Of Birth</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="text" name="students.dob" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Academic Session</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-tags"></i></span>
+                                                    <select name="students.academicSession" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="1st">First Team</option>
+                                                        <option value="2nd">Second Team</option>
+                                                        <option value="3nd">Third Team</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Mother Tongue</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.motherTongue" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Religion</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-moon-o" ></i></span>
+                                                    <select name="students.religion" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="islam">Islam</option>
+                                                        <option value="christain">Christain</option>
+                                                        <option value="others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>State Of Origin</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-map-marker" ></i></span>
+                                                    <input  type="text" name="students.stateOfOrigin" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Nationality</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                    <select name="students.nationality" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="Ng">Nigeria</option>
+                                                        <option value="US">United State</option>
+                                                        <option value="others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Social Security No</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+                                                    <input  type="text" name="students.socialSecurityNo" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Sibling</label>
+                                                <select class="select2_demo_2 form-control" name="students.siblings[]" multiple="multiple">
+                                                    <option value="382376328768">Olanrewaju Ibrahim</option>
+                                                    <option value="32763275373">David Babatunde</option>
+                                                    <option value="3326376733">Semiu Olanrewaju</option>
+                                                    <option value="908098390873">Ibrahim Ade</option>
+                                                    <option value="3082390789327">David Hunk</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <h3> Upload Your Image </h3>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                                            <div class="btn btn-primary btn-file">
+                                                                <span>Upload</span>
+                                                                <input type="file" name="image">
+                                                            </div>
+                                                            <a href="#" class="btn btn-danger" data-dismiss="fileinput">Remove</a>
+                                                        </div>
+                                                        <p>Your photo size should not be more than 200kb</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="form-group col-md-6">
+                                                        <label>Department</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                                            <select name="students.department" class="form-control">
+                                                                <option>Choose One</option>
+                                                                <option value="Scn">Science</option>
+                                                                <option value="Art">Art</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Grades</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                                                @if(schCon.getAllGrade(Auth.sessionSchoolId())!= null && schCon.getAllGrade(Auth.sessionSchoolId()).size() != 0){
+                                                                    <select name="students.grade" class="form-control">
+                                                                        <option>Choose One</option>
+                                                                    @for(item <- schCon.getAllGrade(Auth.sessionSchoolId())) {
+                                                                        <option value="@item.id">@item.name</option>
+                                                                    }
+                                                                    </select>
+                                                                }else{
+                                                                    <a class="btn btn-primary " href="@controllers.sch_config.routes.SchConfigCtr.gradeFormAndList()">Click here and add grade</a>
+                                                                }
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Class Room</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                                                @if(schCon.getAllClassRoom(Auth.sessionSchoolId()) != null && schCon.getAllClassRoom(Auth.sessionSchoolId()).size() != 0){
+                                                                    <select name="students.classRoom" class="form-control">
+                                                                        <option>Choose One</option>
+                                                                    @for(item <- schCon.getAllClassRoom(Auth.sessionSchoolId())) {
+                                                                        <option value="@item.id">@item.className</option>
+                                                                    }
+                                                                    </select>
+                                                                }else{
+                                                                    <a class="btn btn-primary" href="@controllers.sch_config.routes.SchConfigCtr.classRoomForm()">Click here and add classroom</a>
+                                                                }
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Subjects</label>
+                                                        @if(schCon.getAllSubject(Auth.sessionSchoolId()) != null && schCon.getAllSubject(Auth.sessionSchoolId()).size() != 0){
+                                                            <select class="select2_demo_2 form-control" name="students.subjects[]" multiple="multiple">
+                                                            @for(item <- schCon.getAllSubject(Auth.sessionSchoolId())) {
+                                                                <option value="@item.id">@item.subjectName</option>
+                                                            }
+                                                            </select>
+                                                        }else{
+                                                            <a class="btn btn-primary" href="@controllers.sch_config.routes.SchConfigCtr.subjectForm()">Click here and add subject</a>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-md-12">
+                                            <h3>Contact Information</h3>
+                                            <div class="form-group col-md-4">
+                                                <label>Cell Phone</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                                    <input type="text" name="phone[0]" class="form-control" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Home Phone</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                    <input type="text" name="phone[1]" class="form-control" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Fax</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                                    <input type="text" name="fax" class="form-control" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Email Address</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                    <input type="text" name="email" class="form-control" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Country</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                    <input type="text" name="country" class="form-control"  value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>State</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                    <input type="text" name="state" class="form-control" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>City</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                    <input type="text" name="city" class="form-control"  value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Zip code</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope-open"></i></span>
+                                                    <input type="text" name="zipcode" class="form-control"  value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Street</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+                                                    <textarea name="street" class="form-control"  value=""  rows="2"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group col-md-4">
+                                                <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                                            </div>
+                                        </div>*@
+                                </div>
+                            </fieldset>
+                            <h1>Guardian</h1>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-12">
+                                            <div class="form-group col-md-4">
+                                                <label>Title</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                                                    <select name="guardians.title" class="form-control required">
+                                                        <option>Select One</option>
+                                                        <option value="Mr.">Mr</option>
+                                                        <option value="Miss.">Miss</option>
+                                                        <option value="Miss.">Mis</option>
+                                                        <option value="Master.">Master</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>First Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input  type="text" name="guardians.firstName" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Middle Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input  type="text" name="students.health.lastName" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Last Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input  type="text" name="guardians.nickName" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Relationship</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-id-card-o" ></i></span>
+                                                    <input  type="text" name="guardians.relationship" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Gender</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                                                    <select name="guardians.gender" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4 data_1" >
+                                                <label>Date Of Birth</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="text" name="guardians.dob" class="form-control" value="2014-02-22">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Occupation</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="guardians.occupation" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Income</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="guardians.income" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Religion</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-moon-o" ></i></span>
+                                                    <select name="guardians.religion" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="Islam">Islam</option>
+                                                        <option value="Christian">Christian</option>
+                                                        <option value="Others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Tribe</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="guardians.tribe" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h3>Contact Information</h3>
+                                        <div class="form-group col-md-4">
+                                            <label>Cell Phone</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                                <input type="text" name="guardians.contact[0].phone[0]" class="form-control" id="" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Home Phone</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                <input type="text" name="guardians.contact[0].phone[1]" class="form-control" id="" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Fax</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                                <input type="text" name="guardians.contact[0].fax" class="form-control" id="" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Email Address</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                <input type="text" name="guardians.contact[0].email" class="form-control" id="" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Country</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                <input type="text" name="guardians.contact[0].country" class="form-control"  value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>State</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                <input type="text" name="guardians.contact[0].state" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>City</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                <input type="text" name="guardians.contact[0].city" class="form-control"  value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Zip Code</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope-open"></i></span>
+                                                <input type="text" name="guardians.contact[0].zipCode" class="form-control"  value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Street</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+                                                <textarea name="guardians.contact[0].street" class="form-control"  value=""  rows="2"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group col-md-4">
+                                            <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <h1>Health</h1>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-12">
+                                            <div class="form-group col-md-4">
+                                                <label>Blood Group</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                                                    <select name="students.health.bloodGroup" class="form-control required">
+                                                        <option value="">Select One</option>
+                                                        <option value="A+">A+</option>
+                                                        <option value="A-">A-</option>
+                                                        <option value="B+">B+</option>
+                                                        <option value="B-">B-</option>
+                                                        <option value="AB+">AB+</option>
+                                                        <option value="AB-">AB-</option>
+                                                        <option value="O+">O+</option>
+                                                        <option value="O-">O-</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Genotype</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                                                    <select name="students.health.genotype" class="form-control required">
+                                                        <option value="">Select One</option>
+                                                        <option value="stStaff">A</option>
+                                                        <option value="Miss">A+</option>
+                                                        <option value="Miss">B+</option>
+                                                        <option value="Miss">AS</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Height</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                                                    <select name="students.health.height" class="form-control required">
+                                                        <option>Select One</option>
+                                                        <option value="3.1">3.1</option>
+                                                        <option value="3.2">3.2</option>
+                                                        <option value="3.3">3.3</option>
+                                                        <option value="4.1">4.1</option>
+                                                        <option value="5.1">5.1</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Weight</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                                                    <select name="heighthealth.weight" class="form-control required">
+                                                        <option value="">Select One</option>
+                                                        <option value="13.2">13.2</option>
+                                                        <option value="15.3">15.3</option>
+                                                        <option value="34.3">34.3</option>
+                                                        <option value="45.3">45.3</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Oral Hygiene</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.oralHygiene" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Specific Ailment</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.specificAilment" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Vision Left</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.visionLeft" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Vision Right</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.visionRight" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group col-md-4">
+                                                <label>Sickness Type</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.sicknessType" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Best Foods</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.bestFoods" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Reacting Foods</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.reactingFoods" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Reacting Drug</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.reactingDrug" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Allergies</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.allergies" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Immunizations</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="health.immunizations" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>like</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.like" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Dislike</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="students.health.dislike" class="form-control required" id="" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <h1>Preview</h1>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="row m-b-lg m-t-lg">
+                                        <div class="col-md-6">
+
+                                            <div class="profile-image">
+                                                <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                                            </div>
+                                            <div class="profile-info">
+                                                <div class="">
+                                                    <div>
+                                                        <h2 class="no-margins">
+                                                            Ibrahim Mahammad
+                                                        </h2>
+                                                        <h4>Grade 9</h4>
+                                                        <h4>Head Of Prevect</h4>
+                                                        <small>
+                                                            One stap at a time, you dont need rush it is like leaning to fly or fall in love
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Date Of Birth:</b>
+                                                        </td>
+                                                        <td>
+                                                            May 23 1999
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Gender:</b>
+                                                        </td>
+                                                        <td>
+                                                            Male
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Religion:</b>
+                                                        </td>
+                                                        <td>
+                                                            Muslim
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>State Of Origin:</b>
+                                                        </td>
+                                                        <td>
+                                                            Lagos
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Nationality</b>
+                                                        </td>
+                                                        <td>
+                                                            Nigeria
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Social Security No</b>
+                                                        </td>
+                                                        <td>
+                                                            327326875
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <ul class="fee_master-group">
+                                                <li class="profile-fee_master pro-primary">DEPARTMENT</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Science</li>
+                                            </ul>
+                                            <ul class="fee_master-group">
+                                                <li class="profile-fee_master pro-primary">GRADE</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Grade10</li>
+                                            </ul>
+                                            <ul class="fee_master-group">
+                                                <li class="profile-fee_master pro-primary">CLASS ROOM</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Sss1a</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <ul class="fee_master-group">
+                                                <li class="profile-fee_master pro-primary">SUBJECT</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Mathimaties</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Biology</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>English</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Geography</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Chemistry</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <ul class="fee_master-group">
+                                                <li class="profile-fee_master pro-primary">STUDENT QUESTIONNAIRE</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>I want to be a doctor</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>I like to play football</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>I don't like Mr Kule the way he teaching</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <ul class="fee_master-group">
+                                                <li class="profile-fee_master pro-primary">SKILLS</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Football</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Sweeming</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Long Jump</li>
+                                                <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Boxing</li>
+                                            </ul>
+                                        </div>
+                                            <!-- Staff School Info -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                                            <h3>Contact Preview</h3>
+                                            <div class="col-md-4">
+                                                <table class="table ">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><b>Cell Phone:</b></td>
+                                                            <td> 94785987</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Home Phone: </b></td>
+                                                            <td>09855555555</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Fax: </b></td>
+                                                            <td>5975468756</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><b>Email Address: </b></td>
+                                                            <td>client@@hot.com</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Country: </b></td>
+                                                            <td>Nigeria</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>State: </b></td>
+                                                            <td>Lagos</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><b>City: </b></td>
+                                                            <td> Lagos Island</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Street: </b></td>
+                                                            <td>23 olanrewaju Street</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Zip code: </b></td>
+                                                            <td>234</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="tabs-container">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a data-toggle="tab" href="#tab-1"> Guardian</a></li>
+                                                    <li class=""><a data-toggle="tab" href="#tab-2">Health</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div id="tab-1" class="tab-pane active">
+                                                        <div class="panel-body">
+                                                            <div class="table-responsive">
+                                                                <div class="col-md-12">
+                                                                    <h3>Guardian</h3>
+                                                                    <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                                                                        <h3>Guarantor Info</h3>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Title</h4>
+                                                                            <p>Mr</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Full Name</h4>
+                                                                            <p>Olatuji Ojo</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Gender</h4>
+                                                                            <p>Male</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Marital Status</h4>
+                                                                            <p>Married</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Religion</h4>
+                                                                            <p>Muslim</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Resident Address</h4>
+                                                                            <p>12 Oladeji Street</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Pasonal phone</h4>
+                                                                            <p>47973497844</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Pasonal Email</h4>
+                                                                            <p>olandimeji@@hot.com</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Relationship Status</h4>
+                                                                            <p>Family friend</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Relationship Year</h4>
+                                                                            <p>6 </p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Organisation Name</h4>
+                                                                            <p>R And B Limite</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Business Address</h4>
+                                                                            <p> 38 oliver street </p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Business Phone</h4>
+                                                                            <p>34074937948</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Job Title</h4>
+                                                                            <p>General Maneger</p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <h4>Job Level</h4>
+                                                                            <p>I dont know </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                                                                    <h3>Contact Preview 1</h3>
+                                                                    <div class="col-md-4">
+                                                                        <table class="table ">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td><b>Cell Phone:</b></td>
+                                                                                    <td> 94785987</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><b>Home Phone: </b></td>
+                                                                                    <td>09855555555</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><b>Fax: </b></td>
+                                                                                    <td>5975468756</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <table class="table">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td><b>Email Address: </b></td>
+                                                                                    <td>client@@hot.com</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><b>Country: </b></td>
+                                                                                    <td>Nigeria</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><b>State: </b></td>
+                                                                                    <td>Lagos</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <table class="table">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td><b>City: </b></td>
+                                                                                    <td> Lagos Island</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><b>Street: </b></td>
+                                                                                    <td>23 olanrewaju Street</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><b>Zip code: </b></td>
+                                                                                    <td>234</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="tab-2" class="tab-pane">
+                                                        <div class="panel-body">
+                                                            <div class="table-responsive">
+                                                                <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                                                                    <h3>Healht Preview</h3>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Title</h4>
+                                                                        <p>Mr</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Full Name</h4>
+                                                                        <p>Olatuji Ojo</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Gender</h4>
+                                                                        <p>Male</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Marital Status</h4>
+                                                                        <p>Married</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Religion</h4>
+                                                                        <p>Muslim</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Resident Address</h4>
+                                                                        <p>12 Oladeji Street</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Pasonal phone</h4>
+                                                                        <p>47973497844</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Pasonal Email</h4>
+                                                                        <p>olandimeji@@hot.com </p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Relationship Status</h4>
+                                                                        <p>Family friend</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Relationship Year</h4>
+                                                                        <p>6</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Organisation Name</h4>
+                                                                        <p>R And B Limit</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Business Address</h4>
+                                                                        <p> 38 oliver street</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Business Phone</h4>
+                                                                        <p>34074937948</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Job Title</h4>
+                                                                        <p>General Maneger</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Job Level</h4>
+                                                                        <p>I dont know </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                    }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}
+@scripts ={
+    <script>
+        $(document).ready(function(){
+                $("#wizard").steps();
+                $("#form").steps({
+                    bodyTag: "fieldset",
+                    onStepChanging: function (event, currentIndex, newIndex)
+                    {
+                        // Always allow going backward even if the current step contains invalid fields!
+                        if (currentIndex > newIndex)
+                        {
+                            return true;
+                        }
+
+                        // Forbid suppressing "Warning" step if the user is to young
+                        if (newIndex === 3 && Number($("#age").val()) < 18)
+                        {
+                            return false;
+                        }
+
+                        var form = $(this);
+
+                        // Clean up if user went backward before
+                        if (currentIndex < newIndex)
+                        {
+                            // To remove error styles
+                            $(".body:eq(" + newIndex + ") label.error", form).remove();
+                            $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                        }
+
+                        // Disable validation on fields that are disabled or hidden.
+                        form.validate().settings.ignore = ":disabled,:hidden";
+
+                        // Start validation; Prevent going forward if false
+                        return form.valid();
+                    },
+                    onStepChanged: function (event, currentIndex, priorIndex)
+                    {
+                        // Suppress (skip) "Warning" step if the user is old enough.
+                        if (currentIndex === 2 && Number($("#age").val()) >= 18)
+                        {
+                            $(this).steps("next");
+                        }
+
+                        // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                        if (currentIndex === 2 && priorIndex === 3)
+                        {
+                            $(this).steps("previous");
+                        }
+                    },
+                    onFinishing: function (event, currentIndex)
+                    {
+                        var form = $(this);
+
+                        // Disable validation on fields that are disabled.
+                        // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                        form.validate().settings.ignore = ":disabled";
+
+                        // Start validation; Prevent form submission if false
+                        return form.valid();
+                    },
+                    onFinished: function (event, currentIndex)
+                    {
+                        var form = $(this);
+
+                        // Submit form input
+                        form.submit();
+                    }
+                }).validate({
+                    errorPlacement: function (error, element)
+                    {
+                        element.before(error);
+                    },
+                    rules: {
+                        confirm: {
+                            equalTo: "#password"
+                        }
+                    }
+                });
+
+            $('.data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "yyyy-mm-dd"
+            });
+
+                $(".select2_demo_2").select2({
+                    placeholder: "Select your options from the fee_master",
+                    allowClear: true
+                });
+            });
+    </script>
+}
+
+<!-- <input type="file" accept="image/*" onchange="loadFile(event)">
+<img id="output"/>
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script> -->
+
+<!-- <div class="col-md-4" style="margin-left: 14px;">
+    <div class="form-group">
+        <img id="blah" alt="Student Image" class="image-box" />
+    </div>
+    <div class="form-group">
+        <label>Upload Image:</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-upload"></i>
+                </div>
+                <input type="file" name="image"  class="form-control btn btn-primary" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" />
+            </div>
+    </div>
+</div> -->

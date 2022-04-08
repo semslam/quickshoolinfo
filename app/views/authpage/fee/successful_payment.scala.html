@@ -1,0 +1,101 @@
+@import models.education.fees.PaymentHistory
+@(paymentHistory: PaymentHistory)
+@import java._; var add = 0; var arrg = 0;var feeSum = 0.0; var dueSum = 0.0;var discSum = 0.0;var paidSum = 0.0; var balaSum = 0.0;
+@layout.auth_frame("Successful Payment",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+      <h2>Layouts</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="index-2.html">Home</a>
+        </li>
+        <li class="active">
+          <strong>Layouts</strong>
+        </li>
+      </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      @helpers._flash.render()
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content text-center p-md">
+
+            <h2><span class="text-navy">INSPINIA - Responsive Admin Theme</span>
+              is provided with two main layouts <br/>three skins and separate configure options.</h2>
+
+            <p>
+              All config options you can trun on/off from the theme box configuration (green icon on the left side of page).
+            </p>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                  <div class="ibox-content">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>R/N</th>
+                          <th>Fee Name</th>
+                          <th>Fee</th>
+                          <th>Due</th>
+                          <th>Discount</th>
+                          <th>Paid</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @if(paymentHistory.feePayments != null || paymentHistory.feePayments != 0){
+                          @for(item <- paymentHistory.feePayments){
+                            @(add = add +1)
+                            <tr>
+                              <td>@add</td>
+                              <td> @item.feeName
+                              </td>
+                              <td>&#8358; @item.feeAmount</td>
+                              <td>&#8358; @item.feeDue </td>
+                              <td>&#8358; @item.feeDiscount</td>
+                              <td class="footer-table">&#8358; @item.feePaidAmount
+                              </td>
+                              <td>&#8358; @item.feeBalance</td>
+                            </tr>
+                            @(arrg = arrg +1)
+                            @(feeSum += item.feeAmount)
+                            @(dueSum += item.feeDue)
+                            @(discSum += item.feeDiscount)
+                            @(paidSum += item.feePaidAmount)
+                            @(balaSum += item.feeBalance)
+                          }
+                        }
+                        <tr class="footer-table">
+                          <td></td>
+                          <td>Total</td>
+                          <td>&#8358; @feeSum</td>
+                          <td>&#8358; @dueSum</td>
+                          <td>&#8358; @discSum</td>
+                          <td>&#8358; @paidSum</td>
+                          <td>&#8358; @balaSum"</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+              <button type="button" name="action" value="insertToFee" class="pay-sub btn btn-primary ">Save</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@scripts = {
+
+}

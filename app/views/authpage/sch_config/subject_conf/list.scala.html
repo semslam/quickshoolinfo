@@ -1,0 +1,257 @@
+@import api.util.DateFormat
+@import models.education.config.Subject
+@import models.education.config.Department
+@(subjectList : List[Subject],departments: List[Department])
+@layout.auth_frame("List All Class Room",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+      <h2><i class="fa fa-clipboard fa-1x"></i> Subject</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="@controllers.routes.HomeCtr.pageDashboard()">Dashboard</a>
+        </li>
+        <li>
+          <a href="@controllers.sch_config.routes.SchConfigCtr.getSchConfigWorkFllow()">Configuration</a>
+        </li>
+        <li class="active">
+          <strong>Subject</strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Subject List</h5>
+            <div class="ibox-tools">
+              <a class="" href="@controllers.sch_config.routes.SchConfigCtr.subjectForm()">
+                <p class="btn btn-primary">New Subject</p>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-content">
+            <div class="ibox-content m-b-sm border-bottom">
+              <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th data-hide="phone">Short Name</th>
+                    <th data-hide="phone">Department</th>
+                    <th data-hide="phone">Min Mark</th>
+                    <th data-hide="phone,tablet">MAX Mark</th>
+                    <th data-hide="phone">Subject Colour</th>
+                    <th data-hide="phone">Compulsory</th>
+                    <th data-hide="phone">Exam Compulsory</th>
+                    <th data-hide="phone">Modified Date</th>
+                    <th class="text-right">Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  @if(subjectList.size() != 0 && subjectList != null){
+                    @for(item <- subjectList){
+                      <tr>
+                        <td>
+                          @item.subjectName
+                        </td>
+                        <td>
+                          @item.subShortName
+                        </td>
+                        <td>
+                          @if(departments != null && departments.size() != 0){
+                            @for(items <- departments){
+                              @if(items._id == item.department){
+                                @items.name (@items.abbreviation)
+                              }
+                            }
+                          }
+                        </td>
+                        <td>
+                          @item.minMark
+                        </td>
+                        <td>
+                          @item.maxMark
+                        </td>
+                        <td>
+                          <span class="label" style="background-color:@item.subjectColour; ">@item.subjectColour</span>
+                        </td>
+                        <td>
+                          @item.compulsory
+                        </td>
+                        <td>
+                          @item.examCompulsory
+                        </td>
+                        <td>
+                          @DateFormat.getDateFormat(item.lastModified)
+                        </td>
+                        <td>
+                          <div class="btn-group">
+                            <button class="btn-success btn btn-sm" data-toggle="modal" data-target="#@item.id">Edit</button>
+                            <button class="btn btn-danger btn-sm demo1">Delete</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <div style="overflow-x:hidden;" class="modal inmodal fade in" id="@item.id" tabindex="-1" role="dialog" aria-hidden="true" style="display: block;">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                              <h4 class="modal-title">@item.subjectName (@item.subShortName)</h4>
+                              <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                            </div>
+                            <div class="modal-body">
+                              @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertSubject(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+                                <div class="row">
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="control-label" for="status">Subject Name</label>
+                                      <input type="text" id="status" name="subjectName" value="@item.subjectName" placeholder="e.g Mathimaties " class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="control-label" for="status">Subject Name</label>
+                                      <input type="text" id="status" name="subShortName" value="@item.subShortName" placeholder="e.g Math" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="control-label" for="status">Min Mark</label>
+                                      <input type="text" id="status" name="minMark" value="@item.minMark" placeholder="e.g Minimum Mark" class="form-control">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="control-label" for="order_id">Max Mark</label>
+                                      <input type="text" id="order_id" name="maxMark" value="@item.maxMark" placeholder=" Maximum Mark " class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="control-label" for="customer">Subject Colour</label>
+                                      <input type="color" id="customer" name="subjectColour" value="@item.subjectColour" placeholder="" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="control-label" for="order_id">Subject Compulsory ?</label>
+                                      <select name="compulsory" class="form-control required">
+                                        <option value="@item.compulsory">@item.compulsory</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="control-label" for="order_id">Exam Compulsory ?</label>
+                                      <select name="examCompulsory" class="form-control required">
+                                        <option value="@item.compulsory">@item.compulsory</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="control-label" for="status">Department</label>
+                                      @if(departments != null && departments.size() != 0){
+                                        <select name="classDepartment" class="form-control required">
+                                          @for(items <- departments) {
+                                            @if(item.department == items._id){
+                                              <option value="@item.department">@items.name (@items.abbreviation)</option>
+                                            }
+                                          }
+                                          <option>Choose One</option>
+                                          @for(items <- departments){
+                                            <option value="@items._id">@items.name (@items.abbreviation)</option>
+                                          }
+                                          @*/*@@*grades.iterator().next().id.==(item.classGrade)*/*@
+                                        </select>
+                                      }else{
+                                        <a href="@controllers.sch_config.routes.SchConfigCtr.listDepartment()" class="btn btn-primary">No Department Record, Click to Create</a>
+                                      }
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label class="control-label" for="SeatNumber">Description</label>
+                                      <input type="text" id="status" name="descr" value="@item.descr" placeholder="Subject Description" class="form-control">
+                                    </div>
+                                  </div>
+                                </div>
+                              }
+                            </div>
+                            <div class="modal-footer">
+                              <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+                              <button type="submit" name="action" value="insertSubject" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  }
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="7">
+                      <ul class="pagination pull-right"></ul>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div>
+              @* <div class="m text-right"><small>DropzoneJS is an open source library that provides drag'n'drop file uploads with image previews: <a href="../../github.com/enyo/dropzone.html" target="_blank">https://github.com/enyo/dropzone</a></small> </div>*@
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+}
+@scripts ={
+    <!-- Peity -->
+  <script src="@routes.Assets.versioned("js/plugins/peity/jquery.peity.min.js")"></script>
+  <script src="@routes.Assets.versioned("js/demo/peity-demo.js")"></script>
+
+  <script src="@routes.Assets.versioned("js/plugins/sweetalert/sweetalert.min.js")"></script>
+
+  <script>
+
+          $(document).ready(function () {
+
+            $('.demo1').click(function () {
+              swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this class room!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        cancelButtonText: "No, cancel plx!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false },
+                      function (isConfirm) {
+                        if (isConfirm) {
+                          swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                        } else {
+                          swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                      });
+            });
+
+
+          });
+
+  </script>
+
+}

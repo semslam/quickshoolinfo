@@ -1,0 +1,482 @@
+@import api.util.DateFormat
+@import data_services.actors_record.staff.StaffRecord
+@(staffRecord : StaffRecord)
+@layout.auth_frame("Staff Preview ",scripts, "") {
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Profile</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index-2.html">Home</a>
+                </li>
+                <li>
+                    <a>Extra Pages</a>
+                </li>
+                <li class="active">
+                    <strong>Profile</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row m-b-lg m-t-lg">
+            <div class="col-md-6">
+
+                <div class="profile-image">
+                    <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                </div>
+                <div class="profile-info">
+                    <div class="">
+                        <div>
+                            <h2 class="no-margins">
+                                @staffRecord.staffs.title  @staffRecord.staffs.first_name  @staffRecord.staffs.last_name
+                            </h2>
+                            <h4>@staffRecord.users.role</h4>
+                            <h4>@staffRecord.staffs.department</h4>
+                            <small>
+                                One stap at a time, you dont need rush it is like leaning to fly or fall in love
+                            </small>
+                            <a href="@controllers.staff.routes.StaffCtr.getStaffById(staffRecord.staffs._id)" class="btn btn-sm btn-success">Edit </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>Date Of Birth:</b>
+                            </td>
+                            <td>
+                                @DateFormat.getDateAndMounthFormat(staffRecord.staffs.dob)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Gender:</b>
+                            </td>
+                            <td>
+                                @staffRecord.staffs.gender
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Marital Status</b>
+                            </td>
+                            <td>
+                                @staffRecord.staffs.maritalStatus
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>Religion:</b>
+                            </td>
+                            <td>
+                                @staffRecord.staffs.religion
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>State Of Origin:</b>
+                            </td>
+                            <td>
+                                @staffRecord.staffs.stateOfOrigin
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Nationality</b>
+                            </td>
+                            <td>
+                                @staffRecord.staffs.nationality
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Social Security No</b>
+                            </td>
+                            <td>
+                                @staffRecord.staffs.socialSecurityNo
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <table class="footable table table-stripped default footable-loaded no-paging">
+                    <thead>
+                        <tr>
+                            <th class="footable-visible footable-first-column footable-sortable footable-sorted">Deparment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @staffRecord.staffs.department
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <table class="footable table table-stripped default footable-loaded no-paging">
+                    <thead>
+                        <tr>
+                            <th class="footable-visible footable-first-column footable-sortable footable-sorted">Grade Teaching</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(staffRecord.staffs.classTeacher != null && staffRecord.staffs.classTeacher != 0){
+                            @for(item <- staffRecord.staffs.classTeacher){
+                                <tr>
+                                    <td>
+                                        @item
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <table class="footable table table-stripped default footable-loaded no-paging">
+                    <thead>
+                        <tr>
+                            <th class="footable-visible footable-first-column footable-sortable footable-sorted">Subjects Teaching</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(staffRecord.staffs.subjectTeaching != null && staffRecord.staffs.subjectTeaching != 0){
+                            @for(item <- staffRecord.staffs.subjectTeaching){
+                                <tr>
+                                    <td>
+                                    @item
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <table class="footable table table-stripped default footable-loaded no-paging">
+                    <thead>
+                        <tr>
+                            <th class="footable-visible footable-first-column footable-sortable footable-sorted">Skills</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(staffRecord.staffs.skills != null && staffRecord.staffs.skills != 0){
+                            @for(item <- staffRecord.staffs.skills){
+                                <tr>
+                                    <td>
+                                    @item
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+                <!-- Staff School Info -->
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="#" class="btn btn-sm btn-success">Edit Contact</a>
+            </div>
+            <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                @if(staffRecord.staffs.contact != null && staffRecord.staffs.contact != 0){
+                    @for(item <- staffRecord.staffs.contact){
+                        <h3>Contact Preview</h3>
+                        <div class="col-md-4">
+                            <table class="table ">
+                                <tbody>
+                                    <tr>
+                                        <td><b>Cell Phone:</b></td>
+                                        <td> @item.phone.get(0)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Home Phone: </td>
+                                        <td>@item.phone.get(1)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fax: </td>
+                                        <td>@item.fax</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Email Address: </td>
+                                        <td>@item.email</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Country: </td>
+                                        <td>@item.country</td>
+                                    </tr>
+                                    <tr>
+                                        <td>State: </td>
+                                        <td>@item.state</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>City: </td>
+                                        <td> @item.city</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Street: </td>
+                                        <td>@item.street</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zip code: </td>
+                                        <td>@item.zipCode</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="@controllers.staff.routes.StaffCtr.getStaffBiography(staffRecord.staffs._id)" class="btn btn-sm btn-success">Edit</a>
+            </div>
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1"> Background</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2"> Experience</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-3">Bank</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-4">Guarantor</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <div class="col-md-12">
+                                        <h3>Educational BackGround Info</h3>
+                                        <table class="footable table table-stripped default footable-loaded no-paging" data-page-size="8" data-filter="#filter">
+                                            <thead>
+                                                <tr>
+                                                    <th class="footable-visible footable-sortable">School</th>
+                                                    <th class="footable-visible footable-sortable">Programme</th>
+                                                    <th  class="footable-visible footable-sortable">Degree</th>
+                                                    <th  class="footable-visible footable-sortable">Certificate</th>
+                                                    <th  class="footable-visible footable-sortable">Start Year</th>
+                                                    <th  class="footable-visible footable-sortable">End Year</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if(staffRecord.staffs.eduBackground != null && staffRecord.staffs.eduBackground != 0){
+                                                    @for(item <- staffRecord.staffs.eduBackground){
+                                                        <tr>
+                                                            <td>@item.schoolName</td>
+                                                            <td>@item.program</td>
+                                                            <td>@item.degree</td>
+                                                            <td>@item.certificate</td>
+                                                            <td>@DateFormat.getDateFormat(item.start)</td>
+                                                            <td>@DateFormat.getDateFormat(item.end)</td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <div class="col-md-12">
+                                        <h3>Working Experience Info</h3>
+                                        <table class="footable table table-stripped default footable-loaded no-paging" data-page-size="8" data-filter="#filter">
+                                            <thead>
+                                                <tr>
+                                                    <th class="footable-visible footable-sortable">Company</th>
+                                                    <th class="footable-visible footable-sortable">Address</th>
+                                                    <th  class="footable-visible footable-sortable">Title</th>
+                                                    <th  class="footable-visible footable-sortable">Job Description</th>
+                                                    <th  class="footable-visible footable-sortable">Reference</th>
+                                                    <th  class="footable-visible footable-sortable">Start Year</th>
+                                                    <th  class="footable-visible footable-sortable">End Year</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if(staffRecord.staffs.workingExperience != null &&  staffRecord.staffs.workingExperience != 0){
+                                                    @for(item <- staffRecord.staffs.workingExperience){
+                                                        <tr>
+                                                            <td>@item.company</td>
+                                                            <td>@item.address</td>
+                                                            <td>@item.position</td>
+                                                            <td>@item.jobDescr</td>
+                                                            <td>@item.reference</td>
+                                                            <td>@DateFormat.getDateFormat(item.startDate)</td>
+                                                            <td>@DateFormat.getDateFormat(item.endDate)</td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-3" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <div class="col-md-12">
+                                        <h3>Bank Info</h3>
+                                        <table class="footable table table-stripped default footable-loaded no-paging" data-page-size="8" data-filter="#filter">
+                                            <thead>
+                                                <tr>
+                                                    <th class="footable-visible footable-sortable">Full Name</th>
+                                                    <th class="footable-visible footable-sortable">Bank Name</th>
+                                                    <th  class="footable-visible footable-sortable">Account Number</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if(staffRecord.staffs.banks != null && staffRecord.staffs.banks != 0){
+                                                    @for(item <- staffRecord.staffs.banks){
+                                                        <tr>
+                                                            <td>@item.accountFullName</td>
+                                                            <td>@item.bankName</td>
+                                                            <td>@item.accountNumber</td>
+                                                        </tr>
+
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-4" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    @if(staffRecord.staffs.guarantors != null &&  staffRecord.staffs.guarantors != 0){
+                                        @for(item <- staffRecord.staffs.guarantors){
+                                            <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                                                <h3>Guarantor Info</h3>
+                                                <div class="col-md-3">
+                                                    <h4>Full Name</h4>
+                                                    <p>
+                                                        @item.fullName
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Gender</h4>
+                                                    <p>
+                                                        @item.gender
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Marital Status</h4>
+                                                    <p>
+                                                        @item.maritalStatus
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Religion</h4>
+                                                    <p>
+                                                        @item.religion
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Resident Address</h4>
+                                                    <p>
+                                                        @item.residentAddress
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Personal phone</h4>
+                                                    <p>
+                                                        @item.personalPhone
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Personal Email</h4>
+                                                    <p>
+                                                        @item.personalEmail
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Relationship Status</h4>
+                                                    <p>
+                                                        @item.relationStatus
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Relationship Year</h4>
+                                                    <p>
+                                                        @item.relationshipYear
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Organisation Name</h4>
+                                                    <p>
+                                                        @item.organisationName
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Business Address</h4>
+                                                    <p>
+                                                        @item.businessAddress
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Business Phone</h4>
+                                                    <p>
+                                                        @item.businessPhone
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Job Title</h4>
+                                                    <p>
+                                                        @item.jobTitle
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <h4>Job Level</h4>
+                                                    <p>
+                                                        @item.jobLevel
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@scripts = {}

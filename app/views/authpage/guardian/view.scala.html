@@ -1,0 +1,201 @@
+@import api.util.DateFormat
+@import data_services.actors_record.guardian.GuardianRecord
+@(gr : GuardianRecord)
+@layout.auth_frame("Staff Preview ",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+      <h2>Profile</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="index-2.html">Home</a>
+        </li>
+        <li>
+          <a>Extra Pages</a>
+        </li>
+        <li class="active">
+          <strong>Profile</strong>
+        </li>
+      </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-lg m-t-lg">
+      <div class="col-md-6">
+
+        @*<div class="profile-image">
+          <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+        </div>*@
+        <div class="profile-info">
+          <div class="">
+            <div>
+              <h2 class="no-margins">
+                @gr.guardians.title  @gr.guardians.firstName  @gr.guardians.lastName @gr.guardians.nickName
+              </h2>
+              <h4>@gr.users.role</h4>
+              <h4>@gr.users.designation</h4>
+              <h4>@gr.users.userEmail</h4>
+              <small>
+                One stap at a time, you dont need rush it is like leaning to fly or fall in love
+              </small>
+              <a href="@controllers.guardian.routes.RegistrationCtr.getGuardianById(gr.guardians._id)" class="btn btn-sm btn-success">Edit </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                <b>Date Of Birth:</b>
+              </td>
+              <td>
+                @if(gr.guardians.dob != null){ @DateFormat.getDateAndMounthFormat(gr.guardians.dob)}else{N/A}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Gender:</b>
+              </td>
+              <td>
+              @gr.guardians.gender
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Religion:</b>
+              </td>
+              <td>
+              @gr.guardians.religion
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Tribe:</b>
+              </td>
+              <td>
+              @gr.guardians.tribe
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-3">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                <b>Relationship:</b>
+              </td>
+              <td>
+              @gr.guardians.relationship
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <b>Occupation:</b>
+              </td>
+              <td>
+              @gr.guardians.occupation
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Income</b>
+              </td>
+              <td>
+              @gr.guardians.income
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Religion</b>
+              </td>
+              <td>
+              @gr.guardians.religion
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Student</b>
+              </td>
+                @if(gr.guardians.studentId.size() !=0 && gr.guardians.studentId != 0){
+                  @for(item <- gr.guardians.studentId){
+                    <td>@item</td>
+                  }
+                }
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <a href="#" class="btn btn-sm btn-success">Edit Contact</a>
+      </div>
+      <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+      @if(gr.guardians.contact != 0 && gr.guardians.contact != null){
+        @for(item <- gr.guardians.contact){
+          <h3>Contact Preview</h3>
+          <div class="col-md-4">
+            <table class="table ">
+              <tbody>
+                <tr>
+                  <td><b>Cell Phone:</b></td>
+                  <td> @item.phone.get(0)</td>
+                </tr>
+                <tr>
+                  <td>Home Phone: </td>
+                  <td>@item.phone.get(1)</td>
+                </tr>
+                <tr>
+                  <td>Fax: </td>
+                  <td>@item.fax</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-4">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Country: </td>
+                  <td>@item.country</td>
+                </tr>
+                <tr>
+                  <td>State: </td>
+                  <td>@item.state</td>
+                </tr>
+                <tr>
+                  <td>City: </td>
+                  <td> @item.city</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-4">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Street: </td>
+                  <td>@item.street</td>
+                </tr>
+                <tr>
+                  <td>Zip code: </td>
+                  <td>@item.zipCode</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        }
+      }
+
+      </div>
+    </div>
+  </div>
+}
+@scripts = {}

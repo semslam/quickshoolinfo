@@ -1,0 +1,265 @@
+@import api.util.DateFormat
+@import data_services.actors_record.guardian.GuardianRecord
+@(form : GuardianRecord)
+@layout.auth_frame("New Guardian Form",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="p-xs">
+      <div class="pull-left m-r-md">
+        <i class="fa fa-cogs text-navy mid-icon" ></i>
+      </div>
+      <h2>Guardian Registration</h2>
+    </div>
+  </div>
+
+  <div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Guardian Form</h5>
+            <div class="ibox-tools">
+              <a class="collapse-link" href="@controllers.guardian.routes.RegistrationCtr.findAllGuardian()">
+                @*<i class="fa fa-chevron-up"></i>*@
+                <p class="btn btn-primary">Guardian Table</p>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-content">
+
+            <div class="ibox-content m-b-sm border-bottom">
+              @helpers._flash.render()
+              @helper.form(action = controllers.guardian.routes.RegistrationCtr.insertGuardian(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="col-md-12">
+                      <input  type="hidden" name="_id" value="@form.guardians._id" >
+                      <input  type="hidden" name="_id" value="@form.users._id" >
+                      <div class="form-group col-md-4">
+                        <label>Student Name</label>
+                          <select class="select2_demo_2 form-control" name="studentId[]" multiple="multiple">
+                            @if(form.guardians.studentId != null && form.guardians.studentId != 0){
+                              @for(item <- form.guardians.studentId) {
+                                <option selected="selected" value="@item">@item</option>
+                              }
+                            }
+                            <option value="41886170601143221">Wewe Dede Semsem</option>
+                            <option value="52300170610121631">Adewole Adeoye Abdul</option>
+                          </select>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Title</label>
+                        <div class="input-group date">
+                          <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                          <select name="title" class="form-control required">
+                            @if(form.guardians.title != null){
+                              <option value="@form.guardians.title">@form.guardians.title</option>
+                            }else{
+                              <option>Select One</option>
+                            }
+                            <option value="Mr">Mr</option>
+                            <option value="Miss">Miss</option>
+                            <option value="Miss">Mis</option>
+                            <option value="Miss">Master</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>First Name</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                          <input  type="text" name="firstName" class="form-control required"  value="@form.guardians.firstName">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Middle Name</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                          <input  type="text" name="lastName" class="form-control required"  value="@form.guardians.lastName">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Last Name</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                          <input  type="text" name="nickName" class="form-control required"  value="@form.guardians.nickName">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Relationship</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-id-card-o" ></i></span>
+                          <input  type="text" name="relationship" class="form-control required"  value="@form.guardians.relationship">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Gender</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                          <select name="gender" class="form-control">
+                            @if(form.guardians.gender != null){
+                              <option value="@form.guardians.gender">@form.guardians.gender</option>
+                            }else{
+                              <option>Select One</option>
+                            }
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Email</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-id-card-o" ></i></span>
+                          <input  type="text" name="userEmail" class="form-control required"  value="@form.users.userEmail">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4 data_1" >
+                        <label>Date Of Birth</label>
+                        <div class="input-group date">
+                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                          <input type="text" name="dob" class="form-control" value="@DateFormat.getDateFormat(form.guardians.dob)">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Occupation</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                          <input  type="text" name="occupation" class="form-control required"  value="@form.guardians.occupation">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Income</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                          <input  type="text" name="income" class="form-control required"  value="@form.guardians.income">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Religion</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-moon-o" ></i></span>
+                          <select name="religion" class="form-control">
+                            @if(form.guardians.religion != null){
+                              <option value="@form.guardians.religion">@form.guardians.religion</option>
+                            }else{
+                              <option>Select One</option>
+                            }
+                            <option value="Islam">Islam</option>
+                            <option value="Christian">Christian</option>
+                            <option value="Others">Others</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Tribe</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                          <input  type="text" name="tribe" class="form-control required"  value="@form.guardians.tribe">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  @if(form.guardians.contact != null && form.guardians.contact != 0){
+                    @for(item <- form.guardians.contact){
+                      <div class="col-md-12">
+                        <h3>Contact Information</h3>
+                        <div class="form-group col-md-4">
+                          <label>Fax</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                            <input type="text" name="contact[0].fax" value="@item.fax" class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Cell Phone</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                            <input type="text" name="contact[0].phone[0]" value="@if(item.phone.size() != 0 && item.phone != null){ @item.phone.get(0)}" class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Home Phone</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            <input type="text" name="contact[0].phone[1]" value="@if(item.phone.size() != 0 && item.phone != null){ @item.phone.get(1)}" class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Country</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                            <input type="text" name="contact[0].country" value="@item.country" class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>State</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            <input type="text" name="contact[0].state" value="@item.state" class="form-control" >
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>City</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                            <input type="text" name="contact[0].city" value="@item.city" class="form-control" >
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Zip code</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-open"></i></span>
+                            <input type="text" name="contact[0].zipCode" class="form-control"  value="@item.zipCode">
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Street</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+                            <textarea name="contact[0].street" class="form-control"  value="@item.street"  rows="2">@item.street</textarea>
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                        </div>
+                      </div>
+                    }
+                  }
+                  <div class="col-md-4">
+                    <div class="form-group col-md-4">
+                      <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+                  <button type="submit" name="action" value="insertSubject" class="btn btn-primary">Save changes</button>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@scripts = {
+  <script>
+          $(document).ready(function(){
+
+            $('.data_1 .input-group.date').datepicker({
+              todayBtn: "linked",
+              keyboardNavigation: false,
+              forceParse: false,
+              calendarWeeks: true,
+              autoclose: true,
+              format: "yyyy-mm-dd"
+            });
+
+            $(".select2_demo_2").select2({
+              placeholder: "Select options from the fee_master",
+              allowClear: true
+            });
+          });
+  </script>
+}

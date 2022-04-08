@@ -1,0 +1,120 @@
+@import api.util.DateFormat
+@import models_views.StaffUsers
+@(staffUsers :List[StaffUsers])
+@import java._; var add = 0;
+@layout.auth_frame("Staff Table",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+      <h2>Staff Tables</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="index-2.html">Home</a>
+        </li>
+        <li>
+          <a>Staff</a>
+        </li>
+        <li class="active">
+          <strong>Table</strong>
+        </li>
+      </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    @helpers._flash.render()
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <div class="ibox-tools">
+              <h5>Staff Table </h5>
+            </div>
+            <div class="ibox-tools">
+              <a class="collapse-link" href="@controllers.staff.routes.EnrollmentCtr.getForm()">
+                <p class="btn btn-primary"><i class="fa fa-plus-square"></i> New Enrollment</p>
+              </a>
+              <a class="collapse-link" href="#">
+                <p class="btn btn-primary"><i class="fa fa-plus-square"></i> Import</p>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-content">
+            <table class="table table-striped table-bordered table-hover " id="editable" >
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Image</th>
+                  <th>Role</th>
+                  <th>Full Name</th>
+                  <th>Position</th>
+                  <th>Room Teacher</th>
+                  <th>Subject</th>
+                  <th>Class</th>
+                  @*<th>Department</th>*@
+                  <th>Enrolment Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if(staffUsers.size() !=0 && staffUsers != null){
+                  @for(item <- staffUsers ){
+                      @(add = add +1)
+                    <tr class="gradeA">
+                      <td>@add</td>
+                      <td><img class="table-img" src="@routes.Assets.versioned("img/avatar.png")" alt="std"></td>
+                      <td>
+                        @item.role
+                      </td>
+                      <td>
+                        @item.name
+                      </td>
+                      <td>
+                        @item.position
+                      </td>
+                      <td>
+                        @if(item.classRoomTeacher == null){N/A}else{@item.classRoomTeacher}
+                      </td>
+                      <td>
+                        @if(item.subjects == null || item.subjects.size() == 0){N/A}else{@for(items <- item.subjects){ @items <br/>}}
+                      </td>
+                      <td>
+                        @if(item.classTeaching == null || item.classTeaching.size() == 0){N/A}else{@for(items <-item.classTeaching){@items <br/>}}
+                      </td>
+                      @*<td>
+                        @if(item.department == null){N/A}else{@item.department}
+                      </td>*@
+                      <td>@DateFormat.getDateFormat(item.modifiedDate)</td>
+                      <td class="text-center">
+                        <a type="submit" href="@controllers.staff.routes.EnrollmentCtr.getStaffPreview(item.id)" class="btn btn-info">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a type="submit" href="@controllers.staff.routes.EnrollmentCtr.deleteStaff(item.id)" class="btn btn-danger">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+@scripts ={
+  <script>
+     $(document).ready(function() {
+            /* Init DataTables */
+        var oTable = $('#editable').DataTable();
+            $('.clockpicker').clockpicker({format : 'dddd DD MMMM YYYY - HH:mm' });
+
+     });
+  </script>
+}

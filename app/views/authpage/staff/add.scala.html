@@ -1,0 +1,1237 @@
+
+@layout.auth_frame("Staff Enrollment Form",scripts, "") {
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Staff Enrollment</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index-2.html">Dashboard</a>
+                </li>
+                <li>
+                    <a>Enrollment</a>
+                </li>
+                <li class="active">
+                    <strong>Form</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Staff RegistrationCtr From</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a  href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        @helper.form(action = controllers.staff.routes.EnrollmentCtr.addNewStaff(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+                            <h1>Staff</h1>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-12">
+                                            <div class="form-group col-md-4">
+                                                <label>Employee No</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-id-card-o" ></i></span>
+                                                    <input  type="text" name="enrollmentNo" class="form-control required" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4 data_1" >
+                                                <label>Employment Date</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="text" name="enrollmentDate" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Title</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                                                    <select name="title" class="form-control required">
+                                                        <option>Select One</option>
+                                                        <option value="Mr">Mr</option>
+                                                        <option value="Miss">Miss</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>First Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input  type="text" name="first_name" class="form-control required" id="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Middle Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input  type="text" name="middle_name" class="form-control required" id="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Last Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input  type="text" name="last_name" class="form-control required" id="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Email Address</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input  type="text" name="userEmail" class="form-control required" id="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Gender</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                                                    <select name="gender" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4 data_1" >
+                                                <label>Date Of Birth</label>
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="text" name="dob" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Marital Status</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-tags"></i></span>
+                                                    <select name="maritalStatus" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="married">married</option>
+                                                        <option value="single">Single</option>
+                                                        <option value="others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Role</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <select name="role" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="TeachStaff">TeachStaff</option>
+                                                        <option value="Admin">Admin</option>
+                                                        <option value="ItManager">ItManager</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Staff Type</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                                                    <select name="teachersType" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="full-time">Full-Time</option>
+                                                        <option value="part-time">Part-time</option>
+                                                        <option value="contact">Contact</option>
+                                                        <option value="temporary">Temporary</option>
+                                                        <option value="volunteer">Volunteer</option>
+                                                        <option value="others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>ClassRoom Teacher</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                                                    <select name="classRoomTeacher" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="Jss2A">Jss2A</option>
+                                                        <option value="Jss3B">Jss3B</option>
+                                                        <option value="Sss3A">Sss3A</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Designation</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                    <input  type="text" name="position" class="form-control required" id="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Religion</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-moon-o" ></i></span>
+                                                    <select name="religion" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="Islam">Muslim</option>
+                                                        <option value="Christian">Christian</option>
+                                                        <option value="Others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>State Of Origin</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-map-marker" ></i></span>
+                                                    <input  type="text" name="stateOfOrigin" class="form-control required" id="" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Nationality</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                    <select name="nationality" class="form-control">
+                                                        <option>Choose One</option>
+                                                        <option value="Ng">Nigeria</option>
+                                                        <option value="US">United State</option>
+                                                        <option value="others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Social Security No</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+                                                    <input  type="text" name="socialSecurityNo" class="form-control required" id="" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <h3> Upload Your Image </h3>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                                            <div class="btn btn-primary btn-file">
+                                                                <span>Upload</span>
+                                                                <input type="file" name="image">
+                                                            </div>
+                                                            <a href="#" class="btn btn-danger" data-dismiss="fileinput">Remove</a>
+                                                        </div>
+                                                        <p>Your photo size should not be more than 200kb</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <h3>invocation</h3>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Department</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                                            <select name="department" class="form-control">
+                                                                <option>Choose One</option>
+                                                                <option value="Science">Science</option>
+                                                                <option value="Art">Art</option>
+                                                                <option value="others">Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Grades Teaching</label>
+                                                        <select class="select2_demo_2 form-control" name="classTeacher[]" multiple="multiple">
+                                                            <option value="Grade_1">Grade_1</option>
+                                                            <option value="Grade 2">Grade 2</option>
+                                                            <option value="Grade 3">Grade 3</option>
+                                                            <option value="Grade 4">Grade 4</option>
+                                                            <option value="Grade 5">Grade 5</option>
+                                                            <option value="Grade 6">Grade 6</option>
+                                                            <option value="Grade 7">Grade 7</option>
+                                                            <option value="Grade 8">Grade 8</option>
+                                                            <option value="Grade 9">Grade 9</option>
+                                                            <option value="Grade 10">Grade 10</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Subjects Teaching</label>
+                                                        <select class="select2_demo_2 form-control" name="subjectTeaching[]" multiple="multiple">
+                                                            <option value="Mathematics">Mathematics</option>
+                                                            <option value="English Language">English Language</option>
+                                                            <option value="Biology">Biology</option>
+                                                            <option value="Economics">Economics</option>
+                                                            <option value="Yoruba">Yoruba</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Skills</label>
+                                                        <select class="select2_demo_2 form-control" name="skills[]" multiple="multiple">
+                                                            <option value="Running">Running</option>
+                                                            <option value="FootBall">FootBall</option>
+                                                            <option value="Long Jump">Long Jump</option>
+                                                            <option value="Swimming">Swimming</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Contact Information</h3>
+                                            <div class="form-group col-md-4">
+                                                <label>Fax</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                                    <input type="text" name="contact[0].fax" class="form-control" id="" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Cell Phone</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                                    <input type="text" name="contact[0].phone[0]" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Home Phone</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                    <input type="text" name="contact[0].phone[1]" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Email Address</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                    <input type="text" name="contact[0].email" class="form-control required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Country</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                    <input type="text" name="contact[0].country" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>State</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                    <input type="text" name="contact[0].state" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>City</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                    <input type="text" name="contact[0].city" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Zip code</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope-open"></i></span>
+                                                    <input type="text" name="contact[0].zipCode" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>Street</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+                                                    <textarea name="contact[0].street" class="form-control" rows="2"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group col-md-4">
+                                                <button class="btn btn-info" type="button"><i class="fa fa-plus"></i> Add More</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <h1>Auto Biography</h1>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="tabs-container">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a data-toggle="tab" href="#tab-1"> Background</a></li>
+                                                <li class=""><a data-toggle="tab" href="#tab-2"> Experience</a></li>
+                                                <li class=""><a data-toggle="tab" href="#tab-3">Bank</a></li>
+                                                <li class=""><a data-toggle="tab" href="#tab-4">Guarantor</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div id="tab-1" class="tab-pane active">
+                                                    <div class="panel-body">
+                                                        <div class="table-responsive">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-12">
+                                                                    <h3>Educational Background Info</h3>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>School Name</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                                                            <input type="text" name="eduBackground[0].schoolName" class="form-control" value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Program</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                                                            <input type="text" name="eduBackground[0].program" class="form-control" value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 data_1" >
+                                                                        <label>Start Date</label>
+                                                                        <div class="input-group date">
+                                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                            <input type="text" name="eduBackground[0].start" class="form-control" >
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 data_1" >
+                                                                        <label>End Date</label>
+                                                                        <div class="input-group date">
+                                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                            <input type="text" name="eduBackground[0].end" class="form-control" >
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Degree</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                                            <input type="text" name="eduBackground[0].degree" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Certificate</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                                            <input type="text" name="eduBackground[0].certificate" class="form-control" value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group col-md-4">
+                                                                        <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="tab-2" class="tab-pane">
+                                                    <div class="panel-body">
+                                                        <div class="table-responsive">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-12">
+                                                                    <h3>Working Experience Info</h3>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Company</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                                                            <input type="text" name="workingExperience[0].company" class="form-control" id="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Address</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                                                            <input type="text" name="workingExperience[0].address" class="form-control" id="" >
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 data_1" >
+                                                                        <label>Start Date</label>
+                                                                        <div class="input-group date">
+                                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                            <input type="text" name="workingExperience[0].startDate" class="form-control" value="2017-05-08">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 data_1" >
+                                                                        <label>End Date</label>
+                                                                        <div class="input-group date">
+                                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                            <input type="text" name="workingExperience[0].endDate" class="form-control" value="2017-05-23">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Position</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                                            <input type="text" name="workingExperience[0].position" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Job Description</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                                            <input type="text" name="workingExperience[0].jobDescr" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Reference</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                                            <input type="text" name="workingExperience[0].reference" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Phone</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                                            <input type="text" name="workingExperience[0].phone" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group col-md-4">
+                                                                        <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="tab-3" class="tab-pane">
+                                                    <div class="panel-body">
+                                                        <div class="table-responsive">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-12">
+                                                                    <h3>Bank Info</h3>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Full Name</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                                                            <input type="text" name="banks[0].accountFullName" class="form-control" value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Bank Name</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                                                            <input type="text" name="banks[0].bankName" class="form-control" value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Account Number</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                                            <input type="text" name="banks[0].accountNumber" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group col-md-4">
+                                                                        <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="tab-4" class="tab-pane">
+                                                    <div class="panel-body">
+                                                        <div class="table-responsive">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-12">
+                                                                    <h3>Guarantor Info</h3>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Full Name</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                                                            <input type="text" name="guarantors[0].fullName" class="form-control" id="" >
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Gender</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                                                                            <select name="guarantors[0].gender" class="form-control">
+                                                                                <option >Choose One</option>
+                                                                                <option value="male">Male</option>
+                                                                                <option value="female">Female</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Marital Status</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                                                                            <select name="guarantors[0].maritalStatus" class="form-control">
+                                                                                <option>Choose One</option>
+                                                                                <option value="Single">Single</option>
+                                                                                <option value="Married">Married</option>
+                                                                                <option value="Widow">Widow</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Religion</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                                                                            <select name="guarantors[0].religion" class="form-control">
+                                                                                <option>Choose One</option>
+                                                                                <option value="Islam">Islam</option>
+                                                                                <option value="Christian">Christian</option>
+                                                                                <option value="Others">Others</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Resident Address</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                                            <input type="text" name="guarantors[0].residentAddress" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Personal phone</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                                            <input type="text" name="guarantors[0].personalPhone" class="form-control" value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Personal Email</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                                            <input type="text" name="guarantors[0].personalEmail" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Relationship Status</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                                            <input type="text" name="guarantors[0].relationStatus" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Year Of Relationship</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                                            <input type="text" name="guarantors[0].relationshipYear" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Organisation Name</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                                            <input type="text" name="guarantors[0].organisationName" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Job Title</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                                            <input type="text" name="guarantors[0].jobTitle" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Job Level</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                                            <input type="text" name="guarantors[0].jobLevel" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Business Address</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                                            <input type="text" name="guarantors[0].businessAddress" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label>Business Phone</label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                                                            <input type="text" name="guarantors[0].businessPhone" class="form-control"  value="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group col-md-4">
+                                                                        <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <h1>Health</h1>
+                            <fieldset>
+                                <h2>Health Info</h2>
+                            </fieldset>
+                            <h1>Preview</h1>
+                            <fieldset>
+                                <h2>Preview</h2>
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="profile-image">
+                                                <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                                            </div>
+                                            <div class="profile-info">
+                                                <div class="">
+                                                    <h2 class="no-margins">
+                                                        Mr Ibrahim Olanrewaju Semiu
+                                                    </h2>
+                                                    <h4>Teaching Staff</h4>
+                                                    <h4>Head Of Teachers</h4>
+                                                    <small>
+                                                        One stap at a time, you dont need rush it is like leaning to fly or fall in love
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Date Of Birth:</b>
+                                                        </td>
+                                                        <td>
+                                                            May 23 1992
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Gender:</b>
+                                                        </td>
+                                                        <td>
+                                                            Male
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Marital Status</b>
+                                                        </td>
+                                                        <td>
+                                                            Married
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Religion:</b>
+                                                        </td>
+                                                        <td>
+                                                            Muslim
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>State Of Origin:</b>
+                                                        </td>
+                                                        <td>
+                                                            Lagos
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Nationality</b>
+                                                        </td>
+                                                        <td>
+                                                            Nigeria
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>Social Security No</b>
+                                                        </td>
+                                                        <td>
+                                                            327326875
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <table class="footable table table-stripped default footable-loaded no-paging">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="footable-visible footable-first-column footable-sortable footable-sorted">Deparment</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            Science
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <table class="footable table table-stripped default footable-loaded no-paging">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="footable-visible footable-first-column footable-sortable footable-sorted">Grade Teaching</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            SS1
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            SS2
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            SS3
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <table class="footable table table-stripped default footable-loaded no-paging">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="footable-visible footable-first-column footable-sortable footable-sorted">Subjects Teaching</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            Mathimatices
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            English
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Biology
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <table class="footable table table-stripped default footable-loaded no-paging">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="footable-visible footable-first-column footable-sortable footable-sorted">Skills</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            Football
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Sweeming
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Long Jump
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Boxing
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                            <!-- Staff School Info -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                                            <h3>Contact Preview</h3>
+                                            <div class="col-md-4">
+                                                <table class="table ">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><b>Cell Phone:</b></td>
+                                                            <td> 94785987</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Home Phone:</b></td>
+                                                            <td>09855555555</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Fax: </b></td>
+                                                            <td>5975468756</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><b>Email Address: </b></td>
+                                                            <td>client@@hot.com</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Country: </b></td>
+                                                            <td>Nigeria</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>State: </b></td>
+                                                            <td>Lagos</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><b>City: </b></td>
+                                                            <td> Lagos Island</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Street: </b></td>
+                                                            <td>23 olanrewaju Street</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Zip code:</b></td>
+                                                            <td>234</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="tabs-container">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a data-toggle="tab" href="#subtab-1">Background</a></li>
+                                                    <li><a data-toggle="tab" href="#subtab-2">Experience</a></li>
+                                                    <li><a data-toggle="tab" href="#subtab-3">Bank</a></li>
+                                                    <li><a data-toggle="tab" href="#subtab-4">Guarantor</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div id="subtab-1" class="tab-pane active">
+                                                        <div class="panel-body">
+                                                            <div class="table-responsive">
+                                                                <div class="col-md-12">
+                                                                    <h3>Educational BackGound Info</h3>
+                                                                    <table class="footable table table-stripped default footable-loaded no-paging" data-page-size="8" data-filter="#filter">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="footable-visible footable-sortable">School</th>
+                                                                                <th class="footable-visible footable-sortable">Programme</th>
+                                                                                <th  class="footable-visible footable-sortable">Degree</th>
+                                                                                <th  class="footable-visible footable-sortable">Catificate</th>
+                                                                                <th  class="footable-visible footable-sortable">Start Year</th>
+                                                                                <th  class="footable-visible footable-sortable">End Year</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>Univesity Of Lagos</td>
+                                                                                <td>Computer Science</td>
+                                                                                <td>1st Class Upper</td>
+                                                                                <td>Bsc</td>
+                                                                                <td>2012</td>
+                                                                                <td>2016</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Botten University</td>
+                                                                                <td>Atificial Hitelegent</td>
+                                                                                <td>1st Class Upper</td>
+                                                                                <td>Msc</td>
+                                                                                <td>2018</td>
+                                                                                <td>2020</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="subtab-2" class="tab-pane">
+                                                        <div class="panel-body">
+                                                            <div class="table-responsive">
+                                                                <div class="col-md-12">
+                                                                    <h3>Working Experience Info</h3>
+                                                                    <table class="footable table table-stripped default footable-loaded no-paging" data-page-size="8" data-filter="#filter">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="footable-visible footable-sortable">Company</th>
+                                                                                <th class="footable-visible footable-sortable">Address</th>
+                                                                                <th  class="footable-visible footable-sortable">Title</th>
+                                                                                <th  class="footable-visible footable-sortable">Job Description</th>
+                                                                                <th  class="footable-visible footable-sortable">Reference</th>
+                                                                                <th  class="footable-visible footable-sortable">Start Year</th>
+                                                                                <th  class="footable-visible footable-sortable">End Year</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>Travelden</td>
+                                                                                <td>29 Toyin Street Ikeja Lagos</td>
+                                                                                <td>Software Developer</td>
+                                                                                <td>Developing website</td>
+                                                                                <td>Igbalajobi Jamiu ; Ani Amori</td>
+                                                                                <td>2012</td>
+                                                                                <td>2016</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Travelfix</td>
+                                                                                <td>23 Maitam read Wuse II Abuja</td>
+                                                                                <td>Software Developer</td>
+                                                                                <td>Developing website</td>
+                                                                                <td>Kemi Ojo; Dika Oyekasi</td>
+                                                                                <td>2018</td>
+                                                                                <td>2020</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="subtab-3" class="tab-pane">
+                                                        <div class="panel-body">
+                                                            <div class="table-responsive">
+                                                                <div class="col-md-12">
+                                                                    <h3>Bank Info</h3>
+                                                                    <table class="footable table table-stripped default footable-loaded no-paging" data-page-size="8" data-filter="#filter">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="footable-visible footable-sortable">Full Name</th>
+                                                                                <th class="footable-visible footable-sortable">Bank Name</th>
+                                                                                <th  class="footable-visible footable-sortable">Account Number</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>Ibrahim Olanrewaju</td>
+                                                                                <td>GTB</td>
+                                                                                <td>4326532765</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Ibrahim Olanrewaju</td>
+                                                                                <td>Zenth Bank</td>
+                                                                                <td>4326532765</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="subtab-4" class="tab-pane">
+                                                        <div class="panel-body">
+                                                            <div class="table-responsive">
+                                                                <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                                                                    <h3>Guarantor Info</h3>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Title</h4>
+                                                                        <p>Mr</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Full Name</h4>
+                                                                        <p>Olatuji Ojo</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Gender</h4>
+                                                                        <p>Male</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Marital Status</h4>
+                                                                        <p>Married</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Religion</h4>
+                                                                        <p>Muslim</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Resident Address</h4>
+                                                                        <p>12 Oladeji Street</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Personal phone</h4>
+                                                                        <p>47973497844</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Personal Email</h4>
+                                                                        <p>olandimeji@@hot.com</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Relationship Status</h4>
+                                                                        <p>Family friend</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Relationship Year</h4>
+                                                                        <p>6</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Organisation Name</h4>
+                                                                        <p>R And B Limited</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Business Address</h4>
+                                                                        <p>38 oliver street</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Business Phone</h4>
+                                                                        <p>34074937948</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Job Title</h4>
+                                                                        <p>General Maneger</p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <h4>Job Level</h4>
+                                                                        <p>I dont know</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+@scripts = {
+    <script>
+            $(document).ready(function(){
+                $("#wizard").steps();
+                $("#form").steps({
+                    bodyTag: "fieldset",
+                    onStepChanging: function (event, currentIndex, newIndex)
+                    {
+                        // Always allow going backward even if the current step contains invalid fields!
+                        if (currentIndex > newIndex)
+                        {
+                            return true;
+                        }
+
+                        // Forbid suppressing "Warning" step if the user is to young
+                        if (newIndex === 3 && Number($("#age").val()) < 18)
+                        {
+                            return false;
+                        }
+
+                        var form = $(this);
+
+                        // Clean up if user went backward before
+                        if (currentIndex < newIndex)
+                        {
+                            // To remove error styles
+                            $(".body:eq(" + newIndex + ") label.error", form).remove();
+                            $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                        }
+
+                        // Disable validation on fields that are disabled or hidden.
+                        form.validate().settings.ignore = ":disabled,:hidden";
+
+                        // Start validation; Prevent going forward if false
+                        return form.valid();
+                    },
+                    onStepChanged: function (event, currentIndex, priorIndex)
+                    {
+                        // Suppress (skip) "Warning" step if the user is old enough.
+                        if (currentIndex === 2 && Number($("#age").val()) >= 18)
+                        {
+                            $(this).steps("next");
+                        }
+
+                        // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                        if (currentIndex === 2 && priorIndex === 3)
+                        {
+                            $(this).steps("previous");
+                        }
+                    },
+                    onFinishing: function (event, currentIndex)
+                    {
+                        var form = $(this);
+
+                        // Disable validation on fields that are disabled.
+                        // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                        form.validate().settings.ignore = ":disabled";
+
+                        // Start validation; Prevent form submission if false
+                        return form.valid();
+                    },
+                    onFinished: function (event, currentIndex)
+                    {
+                        var form = $(this);
+
+                        // Submit form input
+                        form.submit();
+                    }
+                }).validate({
+                    errorPlacement: function (error, element)
+                    {
+                        element.before(error);
+                    },
+                    rules: {
+                        confirm: {
+                            equalTo: "#password"
+                        }
+                    }
+                });
+
+                $('.data_1 .input-group.date').datepicker({
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    calendarWeeks: true,
+                    autoclose: true,
+                    format: "yyyy-mm-dd"
+                });
+
+                $(".select2_demo_2").select2({
+                    placeholder: "Select your options",
+                    allowClear: true
+                });
+            });
+    </script>
+}

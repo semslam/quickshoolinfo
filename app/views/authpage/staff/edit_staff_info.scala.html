@@ -1,0 +1,409 @@
+@import api.util.DateFormat
+@import models.enum_config.Roles
+@import data_services.actors_record.staff.StaffRecord
+@(form : Form[StaffRecord])
+@layout.auth_frame("Update Staff Info Form",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="p-xs">
+      <div class="pull-left m-r-md">
+        <i class="fa fa-cogs text-navy mid-icon" ></i>
+      </div>
+      <h2>Update Staff Information</h2>
+    </div>
+  </div>
+
+  <div class="ibox-content m-b-sm border-bottom">
+    @helpers._flash.render()
+    @helper.form(action = controllers.staff.routes.EnrollmentCtr.addNewStaff(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-12">
+            <input  type="hidden" name="_id" value="@form.get().staffs._id" >
+            <input  type="hidden" name="_id" value="@form.get().users._id" >
+            <div class="form-group col-md-4">
+              <label>Employee No</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-id-card-o" ></i></span>
+                <input  type="text" name="enrollmentNo" value="@form.get().staffs.enrollmentNo" class="form-control required" disabled>
+              </div>
+            </div>
+            <div class="form-group col-md-4 data_1" >
+              <label>Enrollment Date</label>
+              <div class="input-group date">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                <input type="text" name="enrollmentDate" value="@DateFormat.getDateFormat(form.get().staffs.enrollmentDate)" class="form-control">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Title</label>
+              <div class="input-group date">
+                <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                <select name="title" class="form-control required">
+                  @if(form.get().staffs.title != null){
+                    <option value="@form.get().staffs.title">@form.get().staffs.title</option>
+                  }else{
+                    <option>Select One</option>
+                  }
+                  <option value="Mr">Mr</option>
+                  <option value="Miss">Miss</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>First Name</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input  type="text" name="first_name" value="@form.get().staffs.first_name" class="form-control required">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Last Name</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input  type="text" name="middle_name" value="@form.get().staffs.middle_name" class="form-control required">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Last Name</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input  type="text" name="last_name" value="@form.get().staffs.last_name" class="form-control required">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Email Address</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input  type="text" name="userEmail" value="@form.get().users.userEmail" class="form-control required">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Gender</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                <select name="gender" class="form-control">
+                  @if(form.get().staffs.gender != null){
+                    <option value="@form.get().staffs.gender">@form.get().staffs.gender</option>
+                  }else{
+                    <option>Select One</option>
+                  }
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-4 data_1" >
+              <label>Date Of Birth</label>
+              <div class="input-group date">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                <input type="text" name="dob" value="@DateFormat.getDateFormat(form.get().staffs.dob)" class="form-control">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Marital Status</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-tags"></i></span>
+                <select name="maritalStatus" class="form-control">
+                  @if(form.get().staffs.maritalStatus != null){
+                    <option value="@form.get().staffs.maritalStatus">@form.get().staffs.maritalStatus</option>
+                  }else{
+                    <option>Select One</option>
+                  }
+                  <option value="married">married</option>
+                  <option value="single">Single</option>
+                  <option value="others">Others</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Role</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <select name="role" class="form-control">
+                  @if(form.get().users.role != null){
+                    <option value="@form.get().users.role">@form.get().users.role</option>
+                  }else{
+                    <option>Select One</option>
+                  }
+                  @for(item <- Roles.getAllRoleValues){
+                    <option value="@item.getValue">@item.getValue</option>
+                  }
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Teacher Type</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                <select name="maritalStatus" class="form-control">
+                  @if(form.get().staffs.teachersType != null){
+                    <option value="@form.get().staffs.teachersType">@form.get().staffs.teachersType</option>
+                  }else{
+                    <option>Select One</option>
+                  }
+                  <option value="fullTime">Full Time</option>
+                  <option value="partTime">Part time</option>
+                  <option value="N/A">N/A</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>ClassRoom Teacher</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                <select name="classRoomTeacher" class="form-control">
+                  @if(form.get().staffs.classRoomTeacher != null){
+                    <option value="@form.get().staffs.classRoomTeacher">@form.get().staffs.classRoomTeacher</option>
+                  }else{
+                    <option>Select One</option>
+                  }
+                  <option value="Jss2A">Jss2A</option>
+                  <option value="Jss3B">Jss3B</option>
+                  <option value="Sss3A">Sss3A</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Position</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <input  type="text" name="position" value="@form.get().staffs.department" class="form-control required">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Religion</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-moon-o" ></i></span>
+                <select name="religion" class="form-control">
+                  @if(form.get().staffs.religion != null){
+                    <option value="@form.get().staffs.religion">@form.get().staffs.religion</option>
+                  }else{
+                    <option>Select One</option>
+                  }
+                  <option value="Islam">Muslim</option>
+                  <option value="Christian">Christian</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>State Of Origin</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-map-marker" ></i></span>
+                <input  type="text" name="stateOfOrigin" value="@form.get().staffs.stateOfOrigin" class="form-control required" id="" >
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Nationality</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                <select name="nationality" class="form-control">
+                  @if(form.get().staffs.nationality != null){
+                    <option value="@form.get().staffs.nationality">@form.get().staffs.nationality</option>
+                  }else{
+                    <option>Select One</option>
+                  }
+                  <option value="Ng">Nigeria</option>
+                  <option value="US">United State</option>
+                  <option value="others">Others</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Social Security No</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+                <input  type="text" name="socialSecurityNo" value="@form.get().staffs.socialSecurityNo" class="form-control required" id="" >
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <h3> Upload Your Image </h3>
+                  <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                    <div class="btn btn-primary btn-file">
+                      <span>Upload</span>
+                      <input type="file" name="image">
+                    </div>
+                    <a href="#" class="btn btn-danger" data-dismiss="fileinput">Remove</a>
+                  </div>
+                  <p>Your photo size should not be more than 200kb</p>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <h3>invocation</h3>
+                <div class="form-group col-md-6">
+                  <label>Department</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                    <select name="department" class="form-control">
+                      @if(form.get().staffs.department != null){
+                        <option value="@form.get().staffs.department">@form.get().staffs.department</option>
+                      }else{
+                        <option>Select One</option>
+                      }
+                      <option value="Scn">Science</option>
+                      <option value="Art">Art</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Grades Teaching</label>
+                  <select class="select2_demo_2 form-control" name="classTeacher[]" multiple="multiple">
+                    @if(form.get().staffs.classTeacher != null && form.get().staffs.classTeacher.size() != 0){
+                      @for(item <- form.get().staffs.classTeacher) {
+                        <option selected="selected" value="@item">@item</option>
+                      }
+                    }
+                    <option value="Grade_1">Grade_1</option>
+                    <option value="Grade 2">Grade 2</option>
+                    <option value="Grade 3">Grade 3</option>
+                    <option value="Grade 4">Grade 4</option>
+                    <option value="Grade 5">Grade 5</option>
+                    <option value="Grade 6">Grade 6</option>
+                    <option value="Grade 7">Grade 7</option>
+                    <option value="Grade 8">Grade 8</option>
+                    <option value="Grade 9">Grade 9</option>
+                    <option value="Grade 10">Grade 10</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Subjects Teaching</label>
+                  <select class="select2_demo_2 form-control" name="subjectTeaching[]" multiple="multiple">
+                    @if(form.get().staffs.subjectTeaching != null && form.get().staffs.subjectTeaching != 0){
+                      @for(item <- form.get().staffs.subjectTeaching) {
+                        <option selected="selected" value="@item">@item</option>
+                      }
+                    }
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="English Language">English Language</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Economcis">Economcis</option>
+                    <option value="Yoruba">Yoruba</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Skills</label>
+                  <select class="select2_demo_2 form-control" name="skills[]" multiple="multiple">
+                    @if(form.get().staffs.skills != null && form.get().staffs.skills != 0){
+                      @for(item <- form.get().staffs.skills) {
+                        <option selected="selected" value="@item">@item</option>
+                      }
+                    }
+                    <option value="Running">Running</option>
+                    <option value="FootBall">FootBall</option>
+                    <option value="Long Jump">Long Jump</option>
+                    <option value="Swimming">Swimming</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          @if(form.get().staffs.contact != null && form.get().staffs.contact != 0){
+            @for(item <- form.get().staffs.contact){
+              <div class="col-md-12">
+                <h3>Contact Information</h3>
+                <div class="form-group col-md-4">
+                  <label>Fax</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                    <input type="text" name="contact[0].fax" value="@item.fax" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Cell Phone</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                    <input type="text" name="contact[0].phone[0]" value="@if(item.phone.size() != 0 && item.phone != null){ @item.phone.get(0)}" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Home Phone</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                    <input type="text" name="contact[0].phone[1]" value="@if(item.phone.size() != 0 && item.phone != null){ @item.phone.get(1)}" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Email Address</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input type="text" name="contact[0].email" value="@item.email" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Country</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                    <input type="text" name="contact[0].country" value="@item.country" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>State</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                    <input type="text" name="contact[0].state" value="@item.state" class="form-control" >
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>City</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                    <input type="text" name="contact[0].city" value="@item.city" class="form-control" >
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Zip code</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope-open"></i></span>
+                    <input type="text" name="contact[0].zipCode" class="form-control"  value="@item.zipCode">
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Street</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+                    <textarea name="contact[0].street" class="form-control"  value="@item.street"  rows="2">@item.street</textarea>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                </div>
+              </div>
+            }
+          }
+          <div class="col-md-4">
+            <div class="form-group col-md-4">
+              <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+        <button type="submit" name="action" value="insertPeriod" class="btn btn-primary">Save changes</button>
+      </div>
+    }
+  </div>
+}
+@scripts = {
+  <script>
+          $(document).ready(function(){
+
+            $('.data_1 .input-group.date').datepicker({
+              todayBtn: "linked",
+              keyboardNavigation: false,
+              forceParse: false,
+              calendarWeeks: true,
+              autoclose: true
+            });
+
+            $(".select2_demo_2").select2({
+              placeholder: "Select your options from the fee_master",
+              allowClear: true
+            });
+          });
+  </script>
+}

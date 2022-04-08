@@ -1,0 +1,99 @@
+@layout.auth_frame("Update Staff Contact",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="p-xs">
+      <div class="pull-left m-r-md">
+        <i class="fa fa-cogs text-navy mid-icon" ></i>
+      </div>
+      <h2>Guardian Contact</h2>
+    </div>
+  </div>
+
+  <div class="ibox-content m-b-sm border-bottom">
+    @helpers._flash.render()
+    @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertPeriod(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+      <div class="row">
+          <div class="col-md-12">
+            <h3>Contact Information</h3>
+            <div class="form-group col-md-4">
+              <label>Fax</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                <input type="text" name="fax" class="form-control" id="" value="">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Cell Phone</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                <input type="text" name="phone" class="form-control" id="" value="">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Home Phone</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                <input type="text" name="phone" class="form-control" id="" value="">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Email Address</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <input type="text" name="email" class="form-control" id="" value="">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Country</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                <input type="text" name="country" class="form-control"  value="">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>State</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                <input type="text" name="state" class="form-control" value="">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>City</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                <input type="text" name="city" class="form-control"  value="">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Zip code</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-open"></i></span>
+                <input type="text" name="zipcode" class="form-control"  value="">
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Street</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+                <textarea name="street" class="form-control"  value=""  rows="2"></textarea>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group col-md-4">
+              <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+        <button type="submit" name="action" value="insertPeriod" class="btn btn-primary">Save changes</button>
+      </div>
+    }
+</div>
+}
+@scripts = {
+
+}

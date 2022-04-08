@@ -1,0 +1,114 @@
+@import api.util.DateFormat
+@import models_views.StudentUsers
+@(studentUsers :List[StudentUsers])
+@import java._; var add = 0;
+@layout.auth_frame("Student Tables",scripts, "") {
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Data Tables</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index-2.html">Home</a>
+                </li>
+                <li>
+                    <a>Tables</a>
+                </li>
+                <li class="active">
+                    <strong>Data Tables</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        @helpers._flash.render()
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5> Student Table </h5>
+                        <div class="ibox-tools">
+                            <a  href="@controllers.student.routes.AdmissionCtr.studentForm()">
+                                <p class="btn btn-primary"><i class="fa fa-plus-square"></i> New Admission</p>
+                            </a>
+                            <a  href="#">
+                                <p class="btn btn-primary"><i class="fa fa-plus-square"></i> Import</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="table table-striped table-bordered table-hover " id="editable" >
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Full Name</th>
+                                    <th>Gender</th>
+                                    <th>Department</th>
+                                    <th>Grade</th>
+                                    <th>Class</th>
+                                    <th>Teacher</th>
+                                    <th>Admission Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(studentUsers.size() !=0 && studentUsers != null){
+                                    @for(item <- studentUsers){
+                                        @(add = add +1)
+                                        <tr class="gradeA">
+                                            <td>@add</td>
+                                            <td><img src="" alt="std"></td>
+                                            <td>
+                                                @item.name
+                                            </td>
+                                            <td>
+                                                @item.gender
+                                            </td>
+                                            <td>
+                                                @if(item.department != null){
+                                                    @item.department
+                                                }else{
+                                                    N/A
+                                                }
+                                            </td>
+                                            <td>
+                                                @item.grade
+                                            </td>
+                                            <td>
+                                                @item.classRoom
+                                            </td>
+                                            <td>
+                                                @item.id
+                                            </td>
+                                            <td>@DateFormat.getDateFormat(item.admissionDate)</td>
+                                            <td class="text-center">
+                                                <a type="submit" href="@controllers.student.routes.AdmissionCtr.getStudentById(item.id)" class="btn btn-info">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a type="submit" href="@controllers.student.routes.AdmissionCtr.deleteStudent(item.id)" class="btn btn-danger">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@scripts ={
+    <script>
+            $(document).ready(function() {
+                /* Init DataTables */
+                var oTable = $('#editable').DataTable();
+            });
+    </script>
+}

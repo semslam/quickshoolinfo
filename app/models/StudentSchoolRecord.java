@@ -1,0 +1,1 @@
+//student record // class info, attendance , student progress , score, resoult, behavure, history, fee, etc

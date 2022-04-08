@@ -1,0 +1,106 @@
+@layout.auth_frame("Fee Form",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="p-xs">
+      <div class="pull-left m-r-md">
+        <i class="fa fa-cogs text-navy mid-icon" ></i>
+      </div>
+      <h2>School Utility Configuration</h2>
+    </div>
+  </div>
+
+  <div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Fee Form</h5>
+            <div class="ibox-tools">
+              <a class="collapse-link" href="@controllers.sch_config.routes.SchConfigCtr.feeMasterList()">
+                @*<i class="fa fa-chevron-up"></i>*@
+                <p class="btn btn-primary">Fee List</p>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-content">
+
+            <div class="ibox-content m-b-sm border-bottom">
+              @helpers._flash.render()
+              @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertFee(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label class="control-label" for="status">Fee Name</label>
+                      <input type="text" id="status" name="feeName" value="" placeholder="e.g School Fee" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label class="control-label" for="amount">Amount</label>
+                      <input type="text" id="status" name="amount" value="" placeholder="Fee Amount" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label class="control-label" for="ClassType">Term</label>
+                      <select name="term" class="form-control required">
+                        <option value="">---Select--</option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">"2nd</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group ">
+                      <label class="control-label" for="status">Deu Fee</label>
+                      <input type="text" id="status" name="dueFee" value="" placeholder="Fee Amount" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group data_1">
+                      <label class="control-label" for="order_id">Start Date</label>
+                      <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="text" name="startDate" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group data_1">
+                      <label class="control-label" for="customer">End Date</label>
+                      <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="text" name="endDate" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                  <button type="button" name="action" value="insertFee" class="btn btn-primary">Save changes</button>
+                  <button type="submit" name="action" value="insertToFee" class="btn btn-primary">Save & Back</button>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+}
+@scripts = {
+  <script>
+          $(document).ready(function(){
+              $('.data_1 .input-group.date').datepicker({
+              todayBtn: "linked",
+              keyboardNavigation: false,
+              forceParse: false,
+              calendarWeeks: true,
+              autoclose: true,
+              format: "yyyy-mm-dd"
+            });
+          });
+  </script>
+}

@@ -1,0 +1,271 @@
+@*بسم الله الرحمن الرحيم*@
+@import api.util.DateFormat
+@import models.education.config.Period
+@(periodList: List[Period])
+@layout.auth_frame("Period Form and List",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="p-xs">
+      <div class="pull-left m-r-md">
+        <i class="fa fa-cogs text-navy mid-icon" ></i>
+      </div>
+      <h2>School Utility Configuration</h2>
+    </div>
+  </div>
+
+  <div class="ibox-content m-b-sm border-bottom">
+    @helpers._flash.render()
+    @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertPeriod(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label class="control-label" for="product_name">Period</label>
+            <input type="text" id="product_name" name="period" placeholder="" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label class="control-label" for="country">Period Type</label>
+            <select name="periodType" id="status" class="form-control">
+              <option>Choose One</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label class="control-label" for="country">Is't Break ?</label>
+            <select name="isBreak" id="status" class="form-control">
+              <option>Choose One</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          <label>Start Time</label>
+          <div class="input-group clockpicker" data-autoclose="true" >
+            <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+            <input  type="text" name="startTime" class="form-control required"  value="09:30">
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          <label>End Time</label>
+          <div class="input-group clockpicker" data-autoclose="true" >
+            <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+            <input  type="text" name="endTime" class="form-control required"  value="09:30">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+        <button type="submit" name="action" value="insertPeriod" class="btn btn-primary">Save changes</button>
+      </div>
+    }
+  </div>
+
+  <div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Period List</h5>
+            <div class="ibox-tools">
+              <a class="collapse-link" href="@controllers.sch_config.routes.SchConfigCtr.periodFormAndList()">
+                <p class="btn btn-primary">Refresh</p>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-content">
+            <div class="ibox-content m-b-sm border-bottom">
+              <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                <thead>
+                  <tr>
+                    <th>Period</th>
+                    <th data-hide="phone">Period Type</th>
+                    <th data-hide="phone">Is't Break</th>
+                    <th data-hide="phone">Start Time</th>
+                    <th data-hide="phone,tablet">End Time</th>
+                    <th data-hide="phone">Modified Date</th>
+                    <th data-hide="phone">Status</th>
+                    <th class="text-right">Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                @if(periodList.size() != 0 && periodList != null){
+                  @for(item <- periodList){
+                    <tr>
+                      <td>
+                      @item.period
+                      </td>
+                      <td>
+                      @item.periodType
+                      </td>
+                      <td>
+                      @item.isBreak
+                      </td>
+                      <td>
+                      @item.startTime
+                      </td>
+                      <td>
+                      @item.endTime
+                      </td>
+                      <td>
+                      @DateFormat.getDateAndMounthFormat(item.lastModified)
+                      </td>
+                      <td>
+                        <span class="label label-primary">active</span>
+                      </td>
+                      <td class="text-right">
+                        <div class="btn-group">
+                          <button class="btn-success btn btn-sm" data-toggle="modal" data-target="#@item.id">Edit</button>
+                          <button class="btn btn-danger btn-sm demo1">Delete</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <div style="overflow-x:hidden;" class="modal inmodal fade in" id="@item.id" tabindex="-1" role="dialog" aria-hidden="true" style="display: block;">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Modal title</h4>
+                            <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                          </div>
+                          <div class="modal-body">
+                          @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertPeriod(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+                            <div class="row">
+                              <div class="col-sm-2">
+                                <input type="hidden" name="id" value="@item.id">
+                                <input type="hidden" name="id" value="@item.id">
+                                <div class="form-group">
+                                  <label class="control-label" for="product_name">Period</label>
+                                  <input type="text" id="product_name" name="period" value="@item.period" placeholder="" class="form-control">
+                                </div>
+                              </div>
+                              <div class="col-sm-2">
+                                <div class="form-group">
+                                  <label class="control-label" for="country">Period Type</label>
+                                  <select name="periodType" id="status" class="form-control">
+                                    @if(item.periodType != null){
+                                      <option value="@item.periodType">@item.periodType</option>
+                                    }else{
+                                      <option>Choose One</option>
+                                    }
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-sm-2">
+                                <div class="form-group">
+                                  <label class="control-label" for="country">Is't Break ?</label>
+                                  <select name="isBreak" id="status" class="form-control">
+                                    @if(item.isBreak != null){
+                                      <option value="@item.isBreak">@item.isBreak</option>
+                                    }else{
+                                      <option>Choose One</option>
+                                    }
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-group col-md-3">
+                                <label>Start Time</label>
+                                <div class="input-group clockpicker" data-autoclose="true" >
+                                  <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+                                  <input  type="text" name="startTime" class="form-control required"  value="@item.startTime">
+                                </div>
+                              </div>
+                              <div class="form-group col-md-3">
+                                <label>End Time</label>
+                                <div class="input-group clockpicker" data-autoclose="true" >
+                                  <span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+                                  <input  type="text" name="endTime" class="form-control required"  value="@item.endTime">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="submit" name="action" value="updatePeriod" class="btn btn-primary">Save changes</button>
+                          </div>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  }
+                }
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="7">
+                      <ul class="pagination pull-right"></ul>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@scripts ={
+    <!-- Peity -->
+  <script src="@routes.Assets.versioned("js/plugins/peity/jquery.peity.min.js")"></script>
+  <script src="@routes.Assets.versioned("js/demo/peity-demo.js")"></script>
+
+  <script src="@routes.Assets.versioned("js/plugins/sweetalert/sweetalert.min.js")"></script>
+
+  <script>
+
+          $(document).ready(function () {
+
+            $('.demo1').click(function () {
+              swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this class room!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        cancelButtonText: "No, cancel plx!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false },
+                      function (isConfirm) {
+                        if (isConfirm) {
+                          swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                        } else {
+                          swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                      });
+            });
+
+            $('.clockpicker').clockpicker();
+          });
+  </script>
+}

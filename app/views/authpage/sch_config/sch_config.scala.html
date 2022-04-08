@@ -1,0 +1,219 @@
+@import models.education.config.Position
+@import models.education.config.Term
+@import models.education.config.ClassRoom
+@import models.education.config.Grade
+@import models.education.config.Department
+@import models.education.config.ClassRoomType
+@import models.education.config.Subject
+@import models.education.config.SchoolConfiguration
+@(terms:List[Term],positions:List[Position],classRooms: List[ClassRoom],grades: List[Grade],departments: List[Department], classRoomTypes: List[ClassRoomType], subjects: List[Subject])
+@layout.auth_frame("School Configuration",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+      <h2><i class="fa fa-cog fa-1x"></i> Configuration</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="@controllers.routes.HomeCtr.pageDashboard()">Dashboard</a>
+        </li>
+        <li class="active">
+          <strong>Configuration</strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <style>
+    .height{
+      max-height: 35px;
+      margin: 5px;
+    }
+    </style>
+    <div class="row">
+      <div class="col-lg-4">
+        <a href="@controllers.sch_config.routes.SchConfigCtr.gradeFormAndList()">
+          <div class="widget style1 navy-bg">
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-stack-overflow fa-5x"></i>
+              </div>
+              <div class="col-xs-8 text-right">
+                <strong>GRADE</strong>
+                <h2 class="font-bold">@grades.size()</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 height">
+                <span> They helped us setting up and getting used to the modules phase by phase. </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4">
+        <a href="@controllers.sch_config.routes.SchConfigCtr.classRoomForm()">
+          <div class="widget style1 lazur-bg">
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-edit (alias) fa-5x"></i>
+              </div>
+              <div class="col-xs-8 text-right">
+                <strong>CLASS ROOM </strong>
+                <h2 class="font-bold">@classRooms.size()</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 height">
+                <span> They helped us setting up and getting used to the modules phase by phase. </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4">
+        <a href="@controllers.sch_config.routes.SchConfigCtr.termFormAndList()">
+          <div class="widget style1 yellow-bg">
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-history fa-5x"></i>
+              </div>
+              <div class="col-xs-8 text-right">
+                <strong>TERM</strong>
+                <h2 class="font-bold">@terms.size()</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 height">
+                <span> They helped us setting up and getting used to the modules phase by phase. </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <a href="@controllers.sch_config.routes.SchConfigCtr.subjectForm()">
+          <div class="widget style1 navy-bg">
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-clipboard fa-5x"></i>
+              </div>
+              <div class="col-xs-8 text-right">
+                <strong>SUBJECT</strong>
+                <h2 class="font-bold">@subjects.size()</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 height">
+                <span> They helped us setting up and getting used to the modules phase by phase. </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4">
+        <a href="#">
+          <div class="widget style1 lazur-bg">
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-check-square-o fa-5x"></i>
+              </div>
+              <div class="col-xs-8 text-right">
+                <strong>ATTENDANCE </strong>
+                <h2 class="font-bold">3</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 height">
+                <span> They helped us setting up and getting used to the modules phase by phase. </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4">
+        <a href="@controllers.sch_config.routes.SchConfigCtr.positionFormAndList()">
+          <div class="widget style1 yellow-bg">
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-certificate fa-5x"></i>
+              </div>
+              <div class="col-xs-8 text-right">
+                <strong>POSITION</strong>
+                <h2 class="font-bold">@positions.size()</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 height">
+                <span> They helped us setting up and getting used to the modules phase by phase. </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <a href="@controllers.sch_config.routes.SchConfigCtr.listDepartment()">
+          <div class="widget style1 navy-bg">
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-sitemap fa-5x"></i>
+              </div>
+              <div class="col-xs-8 text-right">
+                <strong>DEPARTMENT</strong>
+                <h2 class="font-bold">@departments.size()</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 height">
+                <span> They helped us setting up and getting used to the modules phase by phase. </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4">
+        <a href="#">
+          <div class="widget style1 lazur-bg">
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-envelope-o fa-5x"></i>
+              </div>
+              <div class="col-xs-8 text-right">
+                <strong>CLASS ROOM </strong>
+                <h2 class="font-bold">@classRooms.size()</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 height">
+                <span> They helped us setting up and getting used to the modules phase by phase. </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4">
+        <a href="@controllers.sch_config.routes.SchConfigCtr.listClassRoomtype()">
+          <div class="widget style1 yellow-bg">
+            <div class="row">
+              <div class="col-xs-4">
+                <i class="fa fa-arrows-alt fa-5x"></i>
+              </div>
+              <div class="col-xs-8 text-right">
+                <strong>CLASSROOM TYPE</strong>
+                <h2 class="font-bold">@classRoomTypes.size()</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 height">
+                <span> They helped us setting up and getting used to the modules phase by phase. </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+}
+@scripts={}

@@ -1,0 +1,252 @@
+@import api.util.DateFormat
+@import models.education.config.Grade
+@(gradeList: List[Grade])
+@import java._; var add = 0;
+@layout.auth_frame("Grade Form and List",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-9">
+            <h2><i class="fa fa-stack-overflow fa-1x"></i> Grade</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@controllers.routes.HomeCtr.pageDashboard()">Dashboard</a>
+                </li>
+                <li>
+                    <a href="@controllers.sch_config.routes.SchConfigCtr.getSchConfigWorkFllow()">Configuration</a>
+                </li>
+                <li class="active">
+                    <strong>Grade</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+  <div class="ibox-content m-b-sm border-bottom">
+      @helpers._flash.render()
+      @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertGrade(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+          <div class="row">
+              <div class="col-sm-4">
+                  <div class="form-group">
+                      <label class="control-label" for="product_name">Grade Name</label>
+                      <input type="text" id="" name="name" value="" placeholder="Grade Name" class="form-control">
+                  </div>
+              </div>
+              <div class="col-sm-2">
+                  <div class="form-group">
+                      <label class="control-label" for="product_name">Grade Code</label>
+                      <input type="text" id="" name="gradeCode" value="" placeholder="Grade Code" class="form-control">
+                  </div>
+              </div>
+              <div class="col-sm-2">
+                  <div class="form-group">
+                      <label class="control-label" for="price">FromAge</label>
+                      <input type="text" id="fromAge" name="fromAge" value="" placeholder="Min Age" class="form-control">
+                  </div>
+              </div>
+              <div class="col-sm-2">
+                  <div class="form-group">
+                      <label class="control-label" for="quantity">ToAge</label>
+                      <input type="text" id="toAge" name="toAge" value="" placeholder="Mix Age" class="form-control">
+                  </div>
+              </div>
+              <div class="col-sm-2">
+                  <div class="form-group">
+                      <label class="control-label" for="country">Country</label>
+                      <select name="country" id="status" class="form-control">
+                          <option value="NG">Nigeria</option>
+                          <option value="US">Usa</option>
+                          <option value="UK">England</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+              <button type="submit" name="action" value="insertGrades" class="btn btn-primary">Save changes</button>
+          </div>
+      }
+  </div>
+
+  <div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Class Room List</h5>
+            <div class="ibox-tools">
+            </div>
+          </div>
+          <div class="ibox-content">
+            <div class="ibox-content m-b-sm border-bottom">
+              <table class="table table-striped table-bordered table-hover " id="editable">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Grade Name</th>
+                    <th data-hide="phone">Grade Code</th>
+                    <th data-hide="phone">From Age</th>
+                    <th data-hide="phone">To Age</th>
+                    <th data-hide="phone,tablet">Country</th>
+                    <th data-hide="phone">Modified Date</th>
+                    <th data-hide="phone">Status</th>
+                    <th class="text-right">Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                    @if(gradeList.size() != 0 && gradeList != null){
+                        @for(item <- gradeList){
+                            @(add = add +1)
+                            <tr>
+                                <td>@add</td>
+                                <td>
+                                   @item.name
+                                </td>
+                                <td>
+                                    @item.gradeCode
+                                </td>
+                                <td>
+                                    @item.fromAge
+                                </td>
+                                <td>
+                                    @item.toAge
+                                </td>
+                                <td>
+                                    @item.country
+                                </td>
+                                <td>
+                                  @DateFormat.getDateFormat(item.modified)
+                                </td>
+                                <td>
+                                    <span class="label label-primary">active</span>
+                                </td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <button class="btn-success btn btn-sm" data-toggle="modal" data-target="#@item.id">Edit</button>
+                                        <button class="btn btn-danger btn-sm demo1">Delete</button>
+                                    </div>
+                                    <div style="overflow-x:hidden;" class="modal inmodal fade in" id="@item.id" tabindex="-1" role="dialog" aria-hidden="true" style="display: block;">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                    <h4 class="modal-title">@item.name</h4>
+                                                    <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertGrade(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+                                                            <div class="row">
+                                                                <input type="hidden"  name="id" value="@item.id">
+                                                                <input type="hidden"  name="modified" value="@DateFormat.getDateFormat(item.modified)">
+                                                                <div class="col-sm-4">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" for="product_name">Grade Name </label>
+                                                                        <input type="text" id="product_name" name="name" value="@item.name" placeholder="Grade Name" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" for="product_name">Grade Code</label>
+                                                                        <input type="text" id="product_name" name="gradeCode" value="@item.gradeCode" placeholder="Grade Code" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" for="price">FromAge</label>
+                                                                        <input type="text" id="price" name="fromAge" value="@item.fromAge" placeholder="Min Age" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" for="quantity">ToAge</label>
+                                                                        <input type="text" id="quantity" name="toAge" value="@item.toAge" placeholder="Mix Age" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" for="country">Country</label>
+                                                                        <select name="country" id="status" class="form-control">
+                                                                            <option value="@item.country">@item.country</option>
+                                                                            <option value="">---Choose One---</option>
+                                                                            <option value="NG">Nigeria</option>
+                                                                            <option value="US">Usa</option>
+                                                                            <option value="UK">England</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                                            <button type="submit" name="action" value="updateGrades" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        }
+                    }
+
+                </tbody>
+               @* <tfoot>
+                  <tr>
+                    <td colspan="7">
+                      <ul class="pagination pull-right"></ul>
+                    </td>
+                  </tr>
+                </tfoot>*@
+              </table>
+            </div>
+            <div>
+              @* <div class="m text-right"><small>DropzoneJS is an open source library that provides drag'n'drop file uploads with image previews: <a href="../../github.com/enyo/dropzone.html" target="_blank">https://github.com/enyo/dropzone</a></small> </div>*@
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@scripts ={
+        <!-- Peity -->
+   @* <script src="@routes.Assets.versioned("js/plugins/peity/jquery.peity.min.js")"></script>
+   <script src="@routes.Assets.versioned("js/demo/peity-demo.js")"></script>
+
+   <script src="@routes.Assets.versioned("js/plugins/sweetalert/sweetalert.min.js")"></script>
+
+   <script>
+
+   $(document).ready(function () {
+
+   $('.demo1').click(function () {
+   swal({
+   title: "Are you sure?",
+   text: "Your will not be able to recover this class room!",
+   type: "warning",
+   showCancelButton: true,
+   confirmButtonColor: "#DD6B55",
+   confirmButtonText: "Yes, delete it!",
+   cancelButtonText: "No, cancel plx!",
+   closeOnConfirm: false,
+   closeOnCancel: false },
+   function (isConfirm) {
+   if (isConfirm) {
+   swal("Deleted!", "Your imaginary file has been deleted.", "success");
+   } else {
+   swal("Cancelled", "Your imaginary file is safe :)", "error");
+   }
+   });
+   });
+
+
+   });
+   </script>*@
+    <script>
+            $(document).ready(function() {
+                /* Init DataTables */
+                var oTable = $('#editable').DataTable();
+                $('.clockpicker').clockpicker({format : 'dddd DD MMMM YYYY - HH:mm' });
+
+            });
+    </script>
+}

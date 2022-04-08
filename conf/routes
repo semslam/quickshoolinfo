@@ -1,0 +1,133 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET    /                                        controllers.HomeCtr.index
+
+# System Signup
+POST   /comfirmation                            controllers.HomeCtr.postSignUp
+#GET    /successful_signup                      controllers.HomeCtr.successSignUp
+GET    /confirm_email                           controllers.HomeCtr.confirmEmailToken(email: String ?= "")
+POST   /tokencode                               controllers.HomeCtr.tokenCodeForm
+POST   /price_plane                             controllers.HomeCtr.pricePlane
+POST   /admin_reg                               controllers.HomeCtr.adminRegistration
+GET    /dashboard                               controllers.HomeCtr.dashboard
+GET    /p-dashboard                             controllers.HomeCtr.pageDashboard
+GET    /logout                                  controllers.HomeCtr.logout
+GET    /home                                    controllers.HomeCtr.loginPage
+POST   /login                                   controllers.HomeCtr.login
+
+GET     /setting/form                           controllers.SchoolCtrl.schoolForm
+POST    /setting/update                         controllers.SchoolCtrl.updateSchool
+
+# School configuration routes
+GET     /schconfig                                controllers.sch_config.SchConfigCtr.getSchConfigWorkFllow
+
+GET     /schconfig/grade_table                    controllers.sch_config.SchConfigCtr.gradeFormAndList
+POST    /schconfig/update_insert_grade            controllers.sch_config.SchConfigCtr.insertGrade
+
+GET     /schconfig/classroom_form                 controllers.sch_config.SchConfigCtr.classRoomForm
+POST    /schconfig/update_insertc_classroom       controllers.sch_config.SchConfigCtr.insertClassRoom
+GET     /schconfig/classroom_table                controllers.sch_config.SchConfigCtr.listClassRooms
+
+GET     /schconfig/term_table                     controllers.sch_config.SchConfigCtr.termFormAndList
+POST    /schconfig/update_insert_term             controllers.sch_config.SchConfigCtr.insertTerm
+
+GET     /schconfig/department_table              controllers.sch_config.SchConfigCtr.listDepartment
+POST    /schconfig/create_department             controllers.sch_config.SchConfigCtr.insertDepartment
+
+GET    /schconfig/insert_class_type             controllers.sch_config.SchConfigCtr.listClassRoomtype
+POST   /schconfig/class_type_table              controllers.sch_config.SchConfigCtr.insertClassRoomtype
+
+GET     /schconfig/subject_form                   controllers.sch_config.SchConfigCtr.subjectForm
+POST    /schconfig/upade_insert_subject           controllers.sch_config.SchConfigCtr.insertSubject
+GET     /schconfig/subject_table                  controllers.sch_config.SchConfigCtr.subjectList
+
+
+
+
+
+GET     /schconfig/position_table                 controllers.sch_config.SchConfigCtr.positionFormAndList
+POST    /schconfig/update_insert_position         controllers.sch_config.SchConfigCtr.insertPosition
+
+# Fee model routes
+
+POST     /fee/update_insert_fee_detail       controllers.sch_config.SchConfigCtr.insertFeeDetail
+POST     /fee/update_insert_fee              controllers.sch_config.SchConfigCtr.insertFee
+GET      /fee/master                         controllers.sch_config.SchConfigCtr.feeMasterList
+GET      /fee/std_payment                    controllers.fees.FeeCtr.studentPayment(id: Long ?= 0)
+GET      /fee/payment                        controllers.fees.FeeCtr.paymentFee
+GET      /fee/history                        controllers.fees.FeeCtr.paymentHistory
+POST     /fee/paid                           controllers.fees.FeeCtr.insertPaymentFee
+GET      /fee/invoice                        controllers.fees.FeeCtr.paymentInvoice
+GET      /fee/successful                     controllers.fees.FeeCtr.successfulPayment(id: Long ?= 0)
+
+# Feature configuration routes
+GET      /app_feature/creat_update                controllers.FeatureCtr.findFeatureById(id: Long ?= 0)
+POST     /app_feature/add                         controllers.FeatureCtr.insertFeature
+GET      /app_feature/delete/:id                  controllers.FeatureCtr.deleteFeature(id: Long)
+GET      /app_feature/tables                      controllers.FeatureCtr.findAllFeature
+
+# Application Privilege configuration routs
+POST     /app_privilege/insert                            controllers.privilege.AppsPrivilegeCtr.insertAppPrivilege
+GET      /app_privilege/creat_update                   controllers.privilege.AppsPrivilegeCtr.findAppPrivilegeById(id: Long ?= 0)
+GET      /app_privilege/table                           controllers.privilege.AppsPrivilegeCtr.findAllAppPrivilege
+GET      /app_privilege/delelte/:id                    controllers.privilege.AppsPrivilegeCtr.deleteAppPrivilege(id: Long)
+
+# Client Privilege configuration routs
+POST    /client_privilege/update                        controllers.privilege.ClientsPrivilegeCtr.updateClientPrivilege
+
+# School Privilege configuration routs
+POST    /school_privilege/update                          controllers.sch_config.SchPrivilegeCtr.updateSchPrivilege
+GET     /school_privilege/tables                          controllers.sch_config.SchPrivilegeCtr.findAllSchPrivileges
+
+# User Privilege configuration routs
+POST    /user_privilege/edit                            controllers.privilege.UsersPrivilegeCtr.updateSchPrivilege
+GET     /user_privilege/tables                            controllers.privilege.UsersPrivilegeCtr.findAllSchPrivileges
+
+# Staff Configuration routs
+GET     /enrollmen/form                                 controllers.staff.EnrollmentCtr.getForm
+POST    /enrollmen/create                               controllers.staff.EnrollmentCtr.addNewStaff
+GET     /staff/preview                                  controllers.staff.EnrollmentCtr.getStaffPreview(id: Long ?= 0)
+GET     /staff/table                                    controllers.staff.EnrollmentCtr.findAllStaff
+GET     /staff/delete/:id                               controllers.staff.EnrollmentCtr.deleteStaff(id: Long)
+POST    /staff/update                                   controllers.staff.EnrollmentCtr.updateStaff
+POST    /staff/update_biography                         controllers.staff.EnrollmentCtr.biographyUpdate
+GET     /staff/get                                      controllers.staff.StaffCtr.getStaffById(id: Long ?= 0)
+POST    /staff/info                                     controllers.staff.StaffCtr.updateStaffInfo
+GET     /staff/get_biography                            controllers.staff.StaffCtr.getStaffBiography(id: Long ?= 0)
+GET     /staff/get_contact                              controllers.staff.StaffCtr.getStaffContact(id: Long ?= 0)
+
+# Student configuration routs
+GET     /admission/form                                 controllers.student.AdmissionCtr.studentForm
+POST    /admission/create                               controllers.student.AdmissionCtr.insertStudent
+GET     /student/table                                  controllers.student.AdmissionCtr.findAllStudent
+GET     /student/update                                 controllers.student.AdmissionCtr.previewStudent(id: Long ?= 0)
+GET     /student/priview                                controllers.student.AdmissionCtr.getStudentById(id: Long ?= 0)
+GET     /student/delete/:id                             controllers.student.AdmissionCtr.deleteStudent(id: Long)
+# Guardian configuration routs
+GET     /registration/form                               controllers.guardian.RegistrationCtr.guardianForm
+POST    /registration/create                             controllers.guardian.RegistrationCtr.insertGuardian
+GET     /guardian/table                                  controllers.guardian.RegistrationCtr.findAllGuardian
+GET     /guardian/get                                    controllers.guardian.RegistrationCtr.getGuardianById(id: Long ?= 0)
+GET     /guardian/delete                                 controllers.guardian.RegistrationCtr.deleteGuardian(id: Long ?= 0)
+GET     /guardian/preview                                controllers.guardian.RegistrationCtr.getPreview(id: Long ?= 0)
+
+# Time table model routs
+GET     /timetable/class_table_form                      controllers.TimeTableCtrl.classTimeTableForm
+POST    /timetable/class_table_add                       controllers.TimeTableCtrl.addClassTimeTable
+GET     /timetable/period_table                          controllers.sch_config.SchConfigCtr.periodFormAndList
+POST    /timetable/update_insert_period                  controllers.sch_config.SchConfigCtr.insertPeriod
+
+# Menu configuration routs
+
+
+POST   /test/dasboard                   controllers.TestingCtr.test
+
+# An example controller showing how to use dependency injection
+GET     /count                      controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET     /message                    controllers.AsyncController.message
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

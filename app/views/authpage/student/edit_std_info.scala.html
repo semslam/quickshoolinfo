@@ -1,0 +1,295 @@
+@import api.util.DateFormat
+@import data_services.actors_record.student.StudentRecord
+@(form: StudentRecord)
+@layout.auth_frame("Update Student Info Form",scripts, "") {
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Update Staff Info From</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index-2.html">Staff Info</a>
+                </li>
+                <li class="active">
+                    <strong>Form</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+    @helper.form(action = controllers.student.routes.AdmissionCtr.insertStudent(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+        <div class="row">
+            <input type="hidden" name="students._id" value="@form.students._id">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4">
+                            <label>Admission No</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-id-card-o" ></i></span>
+                                <input  type="text" name="students.admissionNo" class="form-control required" value="@form.students.admissionNo" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 data_1" >
+                            <label>Admission Date</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" name="students.admissionDate" class="form-control" value="@DateFormat.getDateFormat(form.students.admissionDate)">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Student Type</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                                <select name="students.studentType" class="form-control required">
+                                    @if(form.students.studentType != null){
+                                        <option value="@form.students.studentType">@form.students.studentType</option>
+                                    }else{
+                                        <option>Select One</option>
+                                    }
+                                    <option value="StaffStaff">Staff Student</option>
+                                    <option value="Scholarships">Scholarships</option>
+                                    <option value="Free">Free</option>
+                                    <option value="Discount">Discount</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>First Name</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input  type="text" name="students.firstName" class="form-control required" value="@form.students.firstName">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Middle Name</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input  type="text" name="students.middleName" class="form-control required" value="@form.students.middleName">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Last Name</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input  type="text" name="students.lastName" class="form-control required" value="@form.students.lastName">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Gender</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                                <select name="students.gender" class="form-control">
+                                    @if(form.students.gender != null){
+                                        <option value="@form.students.gender">@form.students.gender</option>
+                                    }else{
+                                        <option value="">Choose One</option>
+                                    }
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 data_1" >
+                            <label>Date Of Birth</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" name="students.dob" class="form-control" value="@DateFormat.getDateFormat(form.students.dob)">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Academic Session</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-tags"></i></span>
+                                <select name="students.academicSession" class="form-control">
+                                    @if(form.students.academicSession != null){
+                                        <option value="@form.students.academicSession">@form.students.academicSession</option>
+                                    }else{
+                                        <option>Choose One</option>
+                                    }
+                                    <option value="1st">First Team</option>
+                                    <option value="2nd">Second Team</option>
+                                    <option value="3nd">Third Team</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Mother Tongue</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                <input  type="text" name="students.motherTongue" class="form-control required" value="@form.students.motherTongue">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Religion</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-moon-o" ></i></span>
+                                <select name="students.religion" class="form-control">
+                                    @if(form.students.religion != null){
+                                        <option value="@form.students.religion">@form.students.religion</option>
+                                    }else{
+                                        <option>Choose One</option>
+                                    }
+                                    <option value="Islam">Islam</option>
+                                    <option value="Christian">Christian</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>State Of Origin</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-marker" ></i></span>
+                                <input  type="text" name="students.stateOfOrigin" class="form-control required" value="@form.students.stateOfOrigin">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Nationality</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                <select name="students.nationality" class="form-control">
+                                    @if(form.students.nationality != null){
+                                        <option value="@form.students.nationality">@form.students.nationality</option>
+                                    }else{
+                                        <option>Choose One</option>
+                                    }
+                                    <option value="Nigeria">Nigeria</option>
+                                    <option value="United State">United State</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Social Security No</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+                                <input  type="text" name="students.socialSecurity" class="form-control required" value="@form.students.socialSecurity">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Sibling</label>
+                            <select class="select2_demo_2 form-control" name="students.siblings[]" multiple="multiple">
+                                @if(form.students.siblings != null && form.students.siblings != 0){
+                                    @for(item <- form.students.siblings) {
+                                        <option selected="selected" value="@item">@item</option>
+                                    }
+                                }
+                                <option value="Olanrewaju">Olanrewaju</option>
+                                <option value="David">David</option>
+                                <option value="Semiu">Semiu</option>
+                                <option value="Ibrahim">Ibrahim</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <h3> Upload Your Image </h3>
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                        <div class="btn btn-primary btn-file">
+                                            <span>Upload</span>
+                                            <input type="file" name="image">
+                                        </div>
+                                        <a href="#" class="btn btn-danger" data-dismiss="fileinput">Remove</a>
+                                    </div>
+                                    <p>Your photo size should not be more than 200kb</p>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <h3>invocation</h3>
+                                <div class="form-group col-md-6">
+                                    <label>Department</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                        <select name="students.department" class="form-control">
+                                            @if(form.students.department != null){
+                                                <option value="@form.students.department">@form.students.department</option>
+                                            }else{
+                                                <option>Choose One</option>
+                                            }
+                                            <option value="Science">Science</option>
+                                            <option value="Art">Art</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Grade</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                        <select name="students.grade" class="form-control">
+                                            @if(form.students.grade != null){
+                                                <option value="@form.students.grade">@form.students.grade</option>
+                                            }else{
+                                                <option>Choose One</option>
+                                            }
+                                            <option value="Grade 1">Grade 1</option>
+                                            <option value="Grade 2">Grade 2</option>
+                                            <option value="Grade 3">Grade 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Class Room</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                        <select name="students.classRoom" class="form-control">
+                                            @if(form.students.classRoom != null){
+                                                <option value="@form.students.classRoom">@form.students.classRoom</option>
+                                            }else{
+                                                <option>Choose One</option>
+                                            }
+                                            <option value="Jss1a">Jss1a</option>
+                                            <option value="Jss3a">Jss3a</option>
+                                            <option value="Sss3b">Sss3b</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Subjects</label>
+                                    <select class="select2_demo_2 form-control" name="students.subjects[]" multiple="multiple">
+                                        @if(form.students.subjects != null && form.students.subjects != 0){
+                                            @for(item <- form.students.subjects) {
+                                                <option selected="selected" value="@item">@item</option>
+                                            }
+                                        }
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="English Language">English Language</option>
+                                        <option value="Biology">Biology</option>
+                                        <option value="Economcis">Economcis</option>
+                                        <option value="Yoruba">Yoruba</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+            <button type="submit" name="action" value="insertPeriod" class="btn btn-primary">Save changes</button>
+        </div>
+    }
+    </div>
+}
+@scripts ={
+    <script>
+       $(document).ready(function(){
+
+           $('.data_1 .input-group .date').datepicker({
+               todayBtn: "linked",
+               keyboardNavigation: false,
+               forceParse: false,
+               calendarWeeks: true,
+               autoclose: true,
+               format: "yyyy-mm-dd"
+           });
+
+           $(".select2_demo_2").select2({
+               placeholder: "Select your options from the fee_master",
+               allowClear: true
+           });
+       });
+    </script>
+
+}

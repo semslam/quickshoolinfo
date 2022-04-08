@@ -1,0 +1,387 @@
+@import api.util.DateFormat
+@import data_services.actors_record.staff.StaffRecord
+@(form : Form[StaffRecord])
+@layout.auth_frame("Update Staff Biography Form",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="p-xs">
+      <div class="pull-left m-r-md">
+        <i class="fa fa-cogs text-navy mid-icon" ></i>
+      </div>
+      <h2>School Utility Configuration</h2>
+    </div>
+  </div>
+  <div class="ibox-title">
+    <h3> @form.get().staffs.title @form.get().staffs.first_name @form.get().staffs.middle_name @form.get().staffs.last_name</h3>
+    @*<h5>Update Auto Biography</h5>*@
+    <div class="ibox-tools">
+      <a class="collapse-link" href="@controllers.staff.routes.EnrollmentCtr.findAllStaff()">
+        @*<i class="fa fa-chevron-up"></i>*@
+        <p class="btn btn-primary">Staff Table</p>
+      </a>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <div class="ibox-content m-b-sm border-bottom">
+    @helpers._flash.render()
+    @helper.form(action = controllers.staff.routes.EnrollmentCtr.biographyUpdate(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+      <div class="row">
+        <input type="hidden" name="id" value="@form.get().staffs._id">
+          <div class="col-md-12">
+            <div class="tabs-container">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab-1"> Background</a></li>
+                <li class=""><a data-toggle="tab" href="#tab-2"> Experience</a></li>
+                <li class=""><a data-toggle="tab" href="#tab-3">Bank</a></li>
+                <li class=""><a data-toggle="tab" href="#tab-4">Guarantor</a></li>
+              </ul>
+              <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                  <div class="panel-body">
+                    <div class="table-responsive">
+                      <div class="col-md-12">
+                        @for(item <- form.get().staffs.eduBackground){
+                          <div class="col-md-12">
+                            <h3>Educational Background Info</h3>
+                            <div class="form-group col-md-4">
+                              <label>School Name</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                <input type="text" name="eduBackground[0].schoolName" class="form-control"  value="@item.schoolName">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Program</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                <input type="text" name="eduBackground[0].program" class="form-control" value="@item.program">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4 data_1">
+                              <label>Start Date</label>
+                              <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" name="eduBackground[0].start" class="form-control" value="@DateFormat.getDateFormat(item.start)">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4 data_1">
+                              <label>End Date</label>
+                              <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" name="eduBackground[0].end" class="form-control" value="@DateFormat.getDateFormat(item.end)">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Degree</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                <input type="text" name="eduBackground[0].degree" class="form-control" value="@item.degree">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Certificate</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                <input type="text" name="eduBackground[0].certificate" class="form-control" value="@item.certificate">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                            </div>
+                          </div>
+                        }
+                        <div class="col-md-4">
+                          <div class="form-group col-md-4">
+                            <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="tab-2" class="tab-pane">
+                  <div class="panel-body">
+                    <div class="table-responsive">
+                      <div class="col-md-12">
+                        @for(item <- form.get().staffs.workingExperience){
+                          <div class="col-md-12">
+                            <h3>Working Experience Info</h3>
+                            <div class="form-group col-md-4">
+                              <label>Company</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                <input type="text" name="workingExperience[0].company" class="form-control"  value="@item.company">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label>Address</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                <input type="text" name="workingExperience[0].address" class="form-control" value="@item.address">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4 data_1">
+                              <label>Start Date</label>
+                              <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" name="workingExperience[0].startDate" class="form-control" value="@DateFormat.getDateFormat(item.startDate)">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4 data_1">
+                              <label>End Date</label>
+                              <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" name="workingExperience[0].endDate" class="form-control" value="@DateFormat.getDateFormat(item.endDate)">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Position</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                <input type="text" name="workingExperience[0].position" class="form-control"  value="@item.position">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Job Description</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                <input type="text" name="workingExperience[0].jobDescr" class="form-control" value="@item.jobDescr">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label>Reference</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                <input type="text" name="workingExperience[0].reference" class="form-control"  value="@item.reference">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                            </div>
+                          </div>
+                        }
+                        <div class="col-md-4">
+                          <div class="form-group col-md-4">
+                            <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="tab-3" class="tab-pane">
+                  <div class="panel-body">
+                    <div class="table-responsive">
+                      <div class="col-md-12">
+                        @for(item <- form.get().staffs.banks){
+                          <div class="col-md-12">
+                            <h3>Bank Info</h3>
+                            <div class="form-group col-md-4">
+                              <label>Full Name</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                <input type="text" name="banks[0].accountFullName" class="form-control" value="@item.accountFullName">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Bank Name</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                <input type="text" name="banks[0].bankName" class="form-control" value="@item.bankName">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Account Number</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                <input type="text" name="banks[0].accountNumber" class="form-control"  value="@item.accountNumber">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                            </div>
+                          </div>
+                        }
+                        <div class="col-md-4">
+                          <div class="form-group col-md-4">
+                            <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="tab-4" class="tab-pane">
+                  <div class="panel-body">
+                    <div class="table-responsive">
+                      <div class="col-md-12">
+                        @for(item <- form.get().staffs.guarantors){
+                          <div class="col-md-12">
+                            <h3>Guarantor Info</h3>
+                           @* <div class="form-group col-md-4">
+                              <label>Title</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                <input type="text" name="guarantors[0].title" class="form-control"  value="@item.title">
+                              </div>
+                            </div>*@
+                            <div class="form-group col-md-4">
+                              <label>Full Name</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                <input type="text" name="guarantors[0].fullName" class="form-control" value="@item.fullName">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Gender</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                                <select name="guarantors[0].gender" class="form-control">
+                                  @if(item.gender != null){
+                                    <option value="@item.gender">@item.gender</option>
+                                  }else{
+                                    <option>Choose One</option>
+                                  }
+                                  <option value="male">Male</option>
+                                  <option value="female">Female</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Marital Status</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-tags"></i></span>
+                                <select name="guarantors[0].maritalStatus" class="form-control">
+                                  @if(item.maritalStatus != null){
+                                    <option value="@item.maritalStatus">@item.maritalStatus</option>
+                                  }else{
+                                    <option>Choose One</option>
+                                  }
+                                  <option value="married">married</option>
+                                  <option value="single">Single</option>
+                                  <option value="others">Others</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Religion</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                <input type="text" name="guarantors[0].religion" class="form-control" value="@item.religion">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Resident Address</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                <input type="text" name="guarantors[0].residentAddress" class="form-control"  value="@item.residentAddress">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Personal phone</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                <input type="text" name="guarantors[0].phone" class="form-control" value="@item.personalPhone">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Personal Email</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                <input type="text" name="guarantors[0].reference" class="form-control"  value="@item.religion">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Relationship Status</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                <input type="text" name="guarantors[0].relationStatus" class="form-control"  value="@item.relationStatus">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Relationship Year</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                <input type="text" name="guarantors[0].relationshipYear" class="form-control"  value="@item.relationshipYear">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Organisation Name</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                <input type="text" name="guarantors[0].organisationName" class="form-control"  value="@item.organisationName">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Business Address</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                <input type="text" name="guarantors[0].businessAddress" class="form-control"  value="@item.businessAddress">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Business Phone</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                <input type="text" name="guarantors[0].businessPhone" class="form-control"  value="@item.businessPhone">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Job Title</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                <input type="text" name="guarantors[0].jobTitle" class="form-control"  value="@item.jobTitle">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label>Job Level</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                                <input type="text" name="guarantors[0].jobLevel" class="form-control"  value="@item.jobLevel">
+                              </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                              <button class="btn btn-danger " type="button"><i class="fa fa-plus-square"></i> Remove</button>
+                            </div>
+                          </div>
+                        }
+                        <div class="col-md-4">
+                          <div class="form-group col-md-4">
+                            <button class="btn btn-info " type="button"><i class="fa fa-plus"></i> Add More</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+        <button type="submit" name="action" value="insertPeriod" class="btn btn-primary">Save changes</button>
+      </div>
+    }
+  </div>
+  </div>
+}
+@scripts = {
+    <script>
+          $(document).ready(function(){
+
+            $('.data_1 .input-group.date').datepicker({
+              todayBtn: "linked",
+              keyboardNavigation: false,
+              forceParse: false,
+              calendarWeeks: true,
+              autoclose: true,
+              format: "yyyy-mm-dd"
+            });
+
+            $(".select2_demo_2").select2({
+              placeholder: "Select your options from the fee_master",
+              allowClear: true
+            });
+          });
+  </script>
+}

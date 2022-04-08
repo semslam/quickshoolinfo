@@ -1,0 +1,223 @@
+@import api.util.DateFormat
+@import models.enum_config.Roles
+@import models.education.config.Position
+@(positionList: List[Position])
+@layout.auth_frame("Position or title Form and List",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+      <h2><i class="fa fa-stack-overflow fa-1x"></i> Position</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="@controllers.routes.HomeCtr.pageDashboard()">Dashboard</a>
+        </li>
+        <li>
+          <a href="@controllers.sch_config.routes.SchConfigCtr.getSchConfigWorkFllow()">Configuration</a>
+        </li>
+        <li class="active">
+          <strong>Position</strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="ibox-content m-b-sm border-bottom">
+    @helpers._flash.render()
+    @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertPosition(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="control-label" for="product_name">Short Name</label>
+            <input type="text" id="" name="shortName" value="" placeholder="" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="control-label" for="product_name">Position Name</label>
+            <input type="text" id="" name="name" value="" placeholder="" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="control-label" for="role">Role</label>
+            <select name="roles[]" class="multi-select-demo form-control" multiple="multiple">
+             @* <option>-----Choose Many-----</option>*@
+              @for(item <- Roles.getAllRoleValues){
+                <option value="@item.getValue">@item.getValue</option>
+              }
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+        <button type="submit" name="action" value="insertPosition" class="btn btn-primary">Save changes</button>
+      </div>
+    }
+  </div>
+
+  <div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Period List</h5>
+            <div class="ibox-tools">
+              <a class="collapse-link" href="@controllers.sch_config.routes.SchConfigCtr.positionFormAndList()">
+                <p class="btn btn-primary">Refresh</p>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-content">
+            <div class="ibox-content m-b-sm border-bottom">
+              <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th data-hide="phone">Short Name</th>
+                    <th data-hide="phone">Roles</th>
+                      <th data-hide="phone">Status</th>
+                      <th data-hide="phone">Modified Date</th>
+                      <th class="text-right">Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                @if(positionList.size() != 0 && positionList != null){
+                  @for(item <- positionList){
+                    <tr>
+                      <td>
+                      @item.name
+                      </td>
+                      <td>
+                      @item.shortName
+                      </td>
+                      <td>
+                        @if(item.roles != null && item.roles.size() !=0){
+                          @for(items <- item.roles){
+                            @items <br>
+                          }
+                        }
+                      </td>
+                      <td>
+                        <span class="label label-primary">active</span>
+                      </td>
+                      <td>
+                       @DateFormat.getDateFormat(item.modified)
+                      </td>
+                      <td class="text-right">
+                        <div class="btn-group">
+                          <button class="btn-success btn btn-sm" data-toggle="modal" data-target="#@item.id">Edit</button>
+                          <button class="btn btn-danger btn-sm demo1">Delete</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <div style="overflow-x:hidden;" class="modal inmodal fade in" id="@item.id" tabindex="-1" role="dialog" aria-hidden="true" style="display: block;">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">@item.name (@item.shortName)</h4>
+                            <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                          </div>
+                          <div class="modal-body">
+                            @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertPosition(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+                              <div class="row">
+                                  <input type="hidden" name="id" value="@item.id">
+                                <div class="col-sm-4">
+                                  <div class="form-group">
+                                    <label class="control-label" for="product_name">Short Name</label>
+                                    <input type="text" id="product_name" name="shortName" value="@item.shortName" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="col-sm-4">
+                                  <div class="form-group">
+                                    <label class="control-label" for="product_name">Position Name</label>
+                                    <input type="text" id="product_name" name="name" value="@item.name"  class="form-control">
+                                  </div>
+                                </div>
+                                <div class="col-sm-4">
+                                  <div class="form-group">
+                                    <label class="control-label" for="country">Role</label>
+                                      <select name="roles[]" class="multi-select-demo form-control" multiple="multiple">
+                                        @if(item.roles != null && item.roles.size() !=0 ){
+                                            @for(item <- item.roles){
+                                                <option selected="selected" value="@item">@item</option>
+                                            }
+                                        }
+                                        @for(item <- Roles.getAllRoleValues){
+                                            <option value="@item.getValue">@item.getValue</option>
+                                        }
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <div class="modal-footer">
+                            <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="submit" name="action" value="updatePosition" class="btn btn-primary">Save changes</button>
+                          </div>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  }
+                }
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="7">
+                      <ul class="pagination pull-right"></ul>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div>
+              @* <div class="m text-right"><small>DropzoneJS is an open source library that provides drag'n'drop file uploads with image previews: <a href="../../github.com/enyo/dropzone.html" target="_blank">https://github.com/enyo/dropzone</a></small> </div>*@
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@scripts ={
+    <!-- Peity -->
+  <script src="@routes.Assets.versioned("js/plugins/peity/jquery.peity.min.js")"></script>
+  <script src="@routes.Assets.versioned("js/demo/peity-demo.js")"></script>
+
+  <script src="@routes.Assets.versioned("js/plugins/sweetalert/sweetalert.min.js")"></script>
+
+  <script  src="@routes.Assets.versioned("js/bootstrap-multiselect.js")"></script>
+  <link rel="stylesheet" href="@routes.Assets.versioned("css/bootstrap-multiselect.css")" >
+
+
+  <script>
+
+          $(document).ready(function () {
+
+            $('.demo1').click(function () {
+              swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this class room!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        cancelButtonText: "No, cancel plx!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false },
+                      function (isConfirm) {
+                        if (isConfirm) {
+                          swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                        } else {
+                          swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                      });
+            });
+
+            $('.multi-select-demo').multiselect();
+
+          });
+  </script>
+}

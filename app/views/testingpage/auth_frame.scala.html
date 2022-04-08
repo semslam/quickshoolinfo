@@ -1,0 +1,48 @@
+@(title: String, scripts: Html = Html(""), StringBody: String = "")(content: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    @* Here's where we render the page title `String`. *@
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@title</title>
+      <!-- Bootstrap core CSS -->
+    <link href="@routes.Assets.versioned("css/bootstrap.min.css")" rel="stylesheet">
+      <!-- Animation CSS -->
+    <link href="@routes.Assets.versioned("css/animate.css")" rel="stylesheet">
+    <link href="@routes.Assets.versioned("font-awesome/css/font-awesome.min.css")" rel="stylesheet">
+      <!-- Custom styles for this template -->
+    <link href="@routes.Assets.versioned("css/style.css")" rel="stylesheet">
+  </head>
+  <body>
+    <div id="wrapper">
+      @* And here's where we render the `Html` object containing
+      * the page content. *@
+      @*menu*@
+      @views.html.testingpage.auth_side_menu.render()
+      <div id="page-wrapper" class="gray-bg">
+        @*header *@
+        @views.html.testingpage.auth_header.render()
+        @*content*@
+        @content
+        @*footer*@
+        @views.html.testingpage.auth_footer.render()
+        @*right side menu*@
+        @views.html.testingpage.auth_right_menu.render()
+      </div>
+    </div>
+      <!-- Mainly scripts -->
+    <script src="@routes.Assets.versioned("js/jquery-2.1.1.js")"></script>
+    <script src="@routes.Assets.versioned("js/bootstrap.min.js")"></script>
+    <script src="@routes.Assets.versioned("js/plugins/metisMenu/jquery.metisMenu.js")"></script>
+    <script src="@routes.Assets.versioned("js/plugins/slimscroll/jquery.slimscroll.min.js")"></script>
+    @scripts
+      <!-- Custom and plugin javascript -->
+    <script src="@routes.Assets.versioned("js/inspinia.js")"></script>
+    <script src="@routes.Assets.versioned("js/plugins/pace/pace.min.js")"></script>
+      <!-- jQuery UI -->
+    <script src="@routes.Assets.versioned("js/plugins/jquery-ui/jquery-ui.min.js")"></script>
+  </body>
+</html>

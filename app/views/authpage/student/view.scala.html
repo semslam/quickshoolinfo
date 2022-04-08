@@ -1,0 +1,409 @@
+@import api.util.DateFormat
+@import data_services.actors_record.student.StudentRecord
+@(sr : StudentRecord)
+@layout.auth_frame("Student Preview",scripts){
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Profile</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index-2.html">Home</a>
+                </li>
+                <li>
+                    <a>Extra Pages</a>
+                </li>
+                <li class="active">
+                    <strong>Profile</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row m-b-lg m-t-lg">
+            <div class="col-md-6">
+
+                <div class="profile-image">
+                    <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                </div>
+                <div class="profile-info">
+                    <div class="">
+                        <div>
+                            <h2 class="no-margins">
+                                @sr.students.firstName @sr.students.middleName @sr.students.lastName
+                            </h2>
+                            <h4><b>GRADE:</b> @sr.students.grade</h4>
+                            @*<h4>Head Of Prevect</h4>*@
+                            <small>
+                                One step at a time, you don't need rush it is like leaning to fly or fall in love
+                            </small>
+                            <a class="btn btn-primary" href="@controllers.student.routes.AdmissionCtr.previewStudent(sr.students._id)">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>Date Of Birth:</b>
+                            </td>
+                            <td>
+                                @DateFormat.getDateAndMounthFormat(sr.students.dob)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Gender:</b>
+                            </td>
+                            <td>
+                                @sr.students.gender
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>Religion:</b>
+                            </td>
+                            <td>
+                                @sr.students.religion
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>State Of Origin:</b>
+                            </td>
+                            <td>
+                                @sr.students.stateOfOrigin
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Nationality</b>
+                            </td>
+                            <td>
+                                @sr.students.nationality
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Social Security No</b>
+                            </td>
+                            <td>
+                                @sr.students.socialSecurity
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="fee_master-group">
+                    <li class="profile-fee_master pro-primary">DEPARTMENT</li>
+                    <li class="fee_master-group-item text-center"><span class="badge profile">-</span>
+                    @if(sr.students.department != null){
+                        @sr.students.department
+                    }else{
+                        N/A
+                    }
+                    </li>
+                </ul>
+                <ul class="fee_master-group">
+                    <li class="profile-fee_master pro-primary">CLASS ROOM</li>
+                    <li class="fee_master-group-item text-center"><span class="badge profile">-</span>@sr.students.classRoom</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul class="fee_master-group">
+                    <li class="profile-fee_master pro-primary">SUBJECT</li>
+                    @if(sr.students.subjects.size() != 0 && sr.students.subjects!= null){
+                        @for(item <- sr.students.subjects){
+                            <li class="fee_master-group-item text-center"><span class="badge profile">-</span>@item</li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul class="fee_master-group">
+                    <li class="profile-fee_master pro-primary">STUDENT QUESTIONNAIRE</li>
+                    <li class="fee_master-group-item text-center"><span class="badge profile">-</span>I want to be a doctor</li>
+                    <li class="fee_master-group-item text-center"><span class="badge profile">-</span>I like to play football</li>
+                    <li class="fee_master-group-item text-center"><span class="badge profile">-</span>I don't like Mr Kule the way he teaching</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul class="fee_master-group">
+                    <li class="profile-fee_master pro-primary">SKILLS</li>
+                    <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Football</li>
+                    <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Swimming</li>
+                    <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Long Jump</li>
+                    <li class="fee_master-group-item text-center"><span class="badge profile">-</span>Boxing</li>
+                </ul>
+            </div>
+                <!-- Staff School Info -->
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                <h3>Contact Preview</h3>
+                <div class="col-md-4">
+                    <table class="table ">
+                        <tbody>
+                            <tr>
+                                <td><b>Cell Phone:</b></td>
+                                <td> 94785987</td>
+                            </tr>
+                            <tr>
+                                <td><b>Home Phone: </b></td>
+                                <td>09855555555</td>
+                            </tr>
+                            <tr>
+                                <td><b>Fax: </b></td>
+                                <td>5975468756</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><b>Email Address: </b></td>
+                                <td>client@@hot.com</td>
+                            </tr>
+                            <tr>
+                                <td><b>Country: </b></td>
+                                <td>Nigeria</td>
+                            </tr>
+                            <tr>
+                                <td><b>State: </b></td>
+                                <td>Lagos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><b>City: </b></td>
+                                <td> Lagos Island</td>
+                            </tr>
+                            <tr>
+                                <td><b>Street: </b></td>
+                                <td>23 olanrewaju Street</td>
+                            </tr>
+                            <tr>
+                                <td><b>Zip code: </b></td>
+                                <td>234</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1"> Guardian</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2">Health</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <div class="col-md-12">
+                                        <h3>Guardian</h3>
+                                        <a class="btn btn-primary" href="" >Edit</a>
+                                        <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                                            <h3>Guarantor Info</h3>
+                                            <div class="col-md-3">
+                                                <h4>Title</h4>
+                                                <p>Mr</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h4>Full Name</h4>
+                                                <p>Olatuji Ojo</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h4>Gender</h4>
+                                                <p>Male</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h4>Marital Status</h4>
+                                                <p>Married</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h4>Religion</h4>
+                                                <p>Muslim</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h4>Personal Email</h4>
+                                                <p>olandimeji@@hot.com</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h4>Relationship </h4>
+                                                <p>Father</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h4>Relationship Year</h4>
+                                                <p>6 </p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h4>Occupation</h4>
+                                                <p>Banker</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                                        <h3>Contact Preview 1</h3>
+                                        <div class="col-md-4">
+                                            <table class="table ">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><b>Cell Phone:</b></td>
+                                                        <td> 94785987</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Home Phone: </b></td>
+                                                        <td>09855555555</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Fax: </b></td>
+                                                        <td>5975468756</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><b>Email Address: </b></td>
+                                                        <td>client@@hot.com</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Country: </b></td>
+                                                        <td>Nigeria</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>State: </b></td>
+                                                        <td>Lagos</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><b>City: </b></td>
+                                                        <td> Lagos Island</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Street: </b></td>
+                                                        <td>23 olanrewaju Street</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Zip code: </b></td>
+                                                        <td>234</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab-2" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <div class="col-md-12" style="border-bottom: 1px solid #ddd">
+                                        <h3>Health Preview</h3>
+                                        <div class="col-md-3">
+                                            <h4>Blood Group</h4>
+                                            <p>Mr</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Genotype</h4>
+                                            <p>Olatuji Ojo</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Height</h4>
+                                            <p>Male</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Wiedth</h4>
+                                            <p>Married</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Reacting Foods</h4>
+                                            <p>Muslim</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Reacting Drugs</h4>
+                                            <p>12 Oladeji Street</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Sickness Type</h4>
+                                            <p>47973497844</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Pasonal Email</h4>
+                                            <p>olandimeji@@hot.com </p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Relationship Status</h4>
+                                            <p>Family friend</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Relationship Year</h4>
+                                            <p>6</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Organisation Name</h4>
+                                            <p>R And B Limit</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Business Address</h4>
+                                            <p> 38 oliver street</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Business Phone</h4>
+                                            <p>34074937948</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Job Title</h4>
+                                            <p>General Maneger</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Job Level</h4>
+                                            <p>I dont know </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@scripts ={
+    <script>
+
+    </script>
+}

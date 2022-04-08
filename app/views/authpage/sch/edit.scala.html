@@ -1,0 +1,749 @@
+@import models.enum_config.Status
+@import models.education.School
+@(school: School)
+@layout.auth_frame("Update School Info",scripts, "") {
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2><i class="fa fa-cog fa-1x"></i> School Setting</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@controllers.routes.HomeCtr.pageDashboard()">Dashboard</a>
+                </li>
+                <li class="active">
+                    <strong>Settings</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+        <style>
+        /*.active {
+           !* background-color: #ffffff;
+            color: #0c0c0c;*!
+            border-top: 3px solid #00e765;
+        }*/
+        </style>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#info-1">School Info</a></li>
+                        <li class=""><a data-toggle="tab" href="#website-2">Website Info</a></li>
+                        <li class=""><a data-toggle="tab" href="#email-3"> Email&Sms Details</a></li>
+                        <li class=""><a data-toggle="tab" href="#contact-4"> Contact</a></li>
+                        <li class=""><a data-toggle="tab" href="#session-5">Academy Session</a></li>
+                        <li class=""><a data-toggle="tab" href="#upgrade-6"> Upgrade</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="info-1" class="tab-pane active">
+                            <div class="panel-body">
+                                    <!--Insert  -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="name"> Name</label>
+                                                <input type="text" name="name" value="@school.name" placeholder="School Name" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="abbreviation">Abbreviation</label>
+                                                <input type="text" name="abbreviation" value="@school.abbreviation" placeholder="School Abbreviation Name" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="sub-domain">Sub-Domain Eg<small>mydomain.qusi.com</small></label>
+                                                <input type="text" name="subDomain" value="@school.subDomain" placeholder="mydomain" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="motto">Motto</label>
+                                                <input type="text" name="motto" value="@school.motto" placeholder="motto" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="email">Email</label>
+                                                <input type="text" name="email" value="@school.email" placeholder="Email" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="language">Language</label>
+                                                <select name="language" class="form-control required">
+                                                    <option value="@school.language">@school.language</option>
+                                                    <option>Choose One</option>
+                                                    <option value="English">English</option>
+                                                    <option value="French">French</option>
+                                                    <option value="Arabic">Arabic</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="currency">Currency</label>
+                                                <select name="currency" class="form-control required">
+                                                    <option>Choose One</option>
+                                                    <option value="214568687">NAIRA NG</option>
+                                                    <option value="55646546">FRENCH FRANC</option>
+                                                    <option value="8689668">EURO </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="timeZone">Time Zone</label>
+                                                <select name="timeZone" class="form-control required">
+                                                    <option>Choose One</option>
+                                                    <option value="-12:00">(GMT -12:00) Eniwetok, Kwajalein</option>
+                                                    <option value="-11:00">(GMT -11:00) Midway Island, Samoa</option>
+                                                    <option value="-10:00">(GMT -10:00) Hawaii</option>
+                                                    <option value="-09:50">(GMT -9:30) Taiohae</option>
+                                                    <option value="-09:00">(GMT -9:00) Alaska</option>
+                                                    <option value="-08:00">(GMT -8:00) Pacific Time (US & Canada)</option>
+                                                    <option value="-07:00">(GMT -7:00) Mountain Time (US & Canada)</option>
+                                                    <option value="-06:00">(GMT -6:00) Central Time (US & Canada), Mexico City</option>
+                                                    <option value="-05:00">(GMT -5:00) Eastern Time (US & Canada), Bogota, Lima</option>
+                                                    <option value="-04:50">(GMT -4:30) Caracas</option>
+                                                    <option value="-04:00">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+                                                    <option value="-03:50">(GMT -3:30) Newfoundland</option>
+                                                    <option value="-03:00">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+                                                    <option value="-02:00">(GMT -2:00) Mid-Atlantic</option>
+                                                    <option value="-01:00">(GMT -1:00) Azores, Cape Verde Islands</option>
+                                                    <option value="+00:00">(GMT +0:00) Western Europe Time, London, Lisbon, Casablanca</option>
+                                                    <option value="+01:00">(GMT +1:00) Brussels, Copenhagen, Madrid, Paris</option>
+                                                    <option value="+02:00">(GMT +2:00) Kaliningrad, South Africa</option>
+                                                    <option value="+03:00">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+                                                    <option value="+03:50">(GMT +3:30) Tehran</option>
+                                                    <option value="+04:00">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+                                                    <option value="+04:50">(GMT +4:30) Kabul</option>
+                                                    <option value="+05:00">(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+                                                    <option value="+05:50">(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
+                                                    <option value="+05:75">(GMT +5:45) Kathmandu, Pokhara</option>
+                                                    <option value="+06:00">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+                                                    <option value="+06:50">(GMT +6:30) Yangon, Mandalay</option>
+                                                    <option value="+07:00">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+                                                    <option value="+08:00">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+                                                    <option value="+08:75">(GMT +8:45) Eucla</option>
+                                                    <option value="+09:00">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+                                                    <option value="+09:50">(GMT +9:30) Adelaide, Darwin</option>
+                                                    <option value="+10:00">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+                                                    <option value="+10:50">(GMT +10:30) Lord Howe Island</option>
+                                                    <option value="+11:00">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+                                                    <option value="+11:50">(GMT +11:30) Norfolk Island</option>
+                                                    <option value="+12:00">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+                                                    <option value="+12:75">(GMT +12:45) Chatham Islands</option>
+                                                    <option value="+13:00">(GMT +13:00) Apia, Nukualofa</option>
+                                                    <option value="+14:00">(GMT +14:00) Line Islands, Tokelau</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4 data_1" >
+                                            <label>Founded Date</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" name="foundedDate" value="@school.foundedDate" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <!--End Of Insert -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-sm-2">
+                                            <div class="form-group">
+                                                <label class="control-label" for="staffAutoGenEnrollNo">Stf Auto EnrolNo</label>
+                                                <select name="staffAutoGenEnrollNo" class="form-control required">
+                                                    <option value="@school.staffAutoGenEnrollNo">@school.staffAutoGenEnrollNo</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="form-group">
+                                                <label class="control-label" for="stdAutoGenAdmissionNo">Std Auto AdmNo</label>
+                                                <select name="stdAutoGenAdmissionNo" class="form-control required">
+                                                    <option value="@school.stdAutoGenAdmissionNo">Yes</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="themesColor"> Themes Colour</label>
+                                                <input type="color" name="themesColor" value="@school.themesColor" placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="font">Font</label>
+                                                <select name="font" class="form-control required">
+                                                    <option value="@school.font">Choose One</option>
+                                                    <option>Choose One</option>
+                                                    <option value="Areal">Areal</option>
+                                                    <option value="Time Roman">Time Roman</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="ibox">
+                                            <div class="ibox-content">
+                                                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th data-hide="phone">Day</th>
+                                                            <th data-hide="phone">Day Number</th>
+                                                            <th data-hide="phone">Status</th>
+                                                            <th data-hide="phone">Modified Date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if(school.workingDays != null && school.workingDays.size() != 0){
+                                                            @for(item <- school.workingDays) {
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>
+                                                                        <select name="day[]" class="form-control required">
+                                                                            <option value="@item.day">@item.day</option>
+                                                                            @for(items <- school.workingDayses){
+                                                                            <option value="@items">@items</option>
+                                                                            }
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name=" dayNumber[]" class="form-control required">
+                                                                            <option value="@item.dayNumber">@item.dayNumber</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                            <option value="6">6</option>
+                                                                            <option value="7">7</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="status[]" class="form-control required">
+                                                                            <option  value="@item.status">@item.status</option>
+                                                                            <option  value="@Status.Activate.getValue">@Status.Activate.getValue</option>
+                                                                            <option  value="@Status.InActivate.getValue">@Status.InActivate.getValue</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        @*<input type="hidden" name="modified" value="@new @Date()">*@
+                                                                        @item.modified
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td colspan="7">
+                                                                <ul class="pagination pull-right"></ul>
+                                                            </td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="ibox">
+                                            <div class="ibox-content">
+                                                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th data-hide="phone">SignIn</th>
+                                                            <th data-hide="phone">SignOut</th>
+                                                            <th data-hide="phone">Role</th>
+                                                            <th data-hide="phone,tablet" >Status</th>
+                                                            <th data-hide="phone">Modified Date</th>
+                                                            <th class="text-right">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                01
+                                                            </td>
+                                                            <td>
+                                                                <input type="time" name="signIn" value="" placeholder="SignIn" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="time" name="signOut" value="" placeholder="Sign Out" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <select name="role" class="form-control required">
+                                                                    <option>Choose One</option>
+                                                                    <option value="Staff">Staff</option>
+                                                                    <option value="Student">Student</option>
+                                                                    <option value="Guardian">Guardian</option>
+                                                                    <option value="Admin">Admin</option>
+                                                                    <option value="Supper_Admin">Supper_Admin</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select name="status" class="form-control required">
+                                                                    <option>Choose One</option>
+                                                                    <option value="Active">Active</option>
+                                                                    <option value="InActive">InActive</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                21/07/2017
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <div class="btn-group">
+                                                                    <button class="btn-primary btn btn-xs">View</button>
+                                                                    <button class="btn-info btn btn-xs">Edit</button>
+                                                                    <button class="btn-danger btn btn-xs">Delete</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                02
+                                                            </td>
+                                                            <td>
+                                                                <input type="time" name="signIn" value="" placeholder="SignIn" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="time" name="signOut" value="" placeholder="Sign Out" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <select name="role" class="form-control required">
+                                                                    <option>Choose One</option>
+                                                                    <option value="Staff">Staff</option>
+                                                                    <option value="Student">Student</option>
+                                                                    <option value="Guardian">Guardian</option>
+                                                                    <option value="Admin">Admin</option>
+                                                                    <option value="Supper_Admin">Supper_Admin</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select name="status" class="form-control required">
+                                                                    <option>Choose One</option>
+                                                                    <option value="Active">Active</option>
+                                                                    <option value="InActive">InActive</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                21/07/2017
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <div class="btn-group">
+                                                                    <button class="btn-primary btn btn-xs">View</button>
+                                                                    <button class="btn-info btn btn-xs">Edit</button>
+                                                                    <button class="btn-danger btn btn-xs">Delete</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                03
+                                                            </td>
+                                                            <td>
+                                                                <input type="time" name="signIn" value="" placeholder="SignIn" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="time" name="signOut" value="" placeholder="Sign Out" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <select name="role" class="form-control required">
+                                                                    <option>Choose One</option>
+                                                                    <option value="Staff">Staff</option>
+                                                                    <option value="Student">Student</option>
+                                                                    <option value="Guardian">Guardian</option>
+                                                                    <option value="Admin">Admin</option>
+                                                                    <option value="Supper_Admin">Supper_Admin</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select name="status" class="form-control required">
+                                                                    <option>Choose One</option>
+                                                                    <option value="Active">Active</option>
+                                                                    <option value="InActive">InActive</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                21/07/2017
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <div class="btn-group">
+                                                                    <button class="btn-primary btn btn-xs">View</button>
+                                                                    <button class="btn-info btn btn-xs">Edit</button>
+                                                                    <button class="btn-danger btn btn-xs">Delete</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td colspan="7">
+                                                                <ul class="pagination pull-right"></ul>
+                                                            </td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="website-2" class="tab-pane">
+                            <div class="panel-body">
+                                    <!--Insert  -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="title"> title</label>
+                                                <input type="text" name="title" value="@school.title" placeholder="Website title" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="meterData">MeterData</label>
+                                                <input type="text" name="meterData" value="@school.meterData" placeholder="Home Page Meter Data" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="keyword">Keyword</label>
+                                                <input type="text" name="keyword" value="@school.keyword" placeholder="Website Keyword" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="website">Website</label>
+                                                <input type="text" name="website" value="@school.website" placeholder="www.myschool.com" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-title">
+                                                <h5>Example of Edit by click and save as a html</h5>
+                                                <button id="edit" class="btn btn-primary btn-xs m-l-sm" onclick="edit()" type="button">Edit</button>
+                                                <button id="save" class="btn btn-primary  btn-xs" onclick="save()" type="button">Save</button>
+                                                <div class="ibox-tools">
+                                                </div>
+                                            </div>
+                                            <div class="ibox-content no-padding">
+
+                                                <div class="click2edit wrapper p-md">
+                                                    <h3>Lorem Ipsum is simply</h3>
+                                                    dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's</strong> standard dummy text ever since the 1500s,
+                                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                                                    typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                                                    <br/>
+                                                    <br/>
+                                                    <ul>
+                                                        <li>Remaining essentially unchanged</li>
+                                                        <li>Make a type specimen book</li>
+                                                        <li>Unknown printer</li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="email-3" class="tab-pane">
+                            <div class="panel-body">
+                                    <!--Insert  -->
+                                <div class="row">
+                                    <h4 style="margin-left: 30px;margin-bottom: 10px">Mailer Credential</h4>
+                                   @* <div class="col-sm-12">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label" for="user">User Name</label>
+                                                <input type="text" name="mailServerDetails.user" value="@school.mailServerDetails.user" placeholder="User" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label" for="password">Password</label>
+                                                <input type="text" name="mailServerDetails.password" value="@school.mailServerDetails.password" placeholder="Password" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                </div>
+                                <div class="row">
+                                    <h4 style="margin-left: 30px;margin-bottom: 10px">SMS Credential</h4>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="host">Host</label>
+                                                <input type="text" name="host" value="" placeholder="Host" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="port">Port</label>
+                                                <input type="text" name="port" value="" placeholder="Port" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="user">User</label>
+                                                <input type="text" name="user" value="" placeholder="User" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="password">Password</label>
+                                                <input type="text" name="password" value="" placeholder="Password" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <!--End Of Insert -->
+                            </div>
+                        </div>
+                        <div id="contact-4" class="tab-pane">
+                            <div class="panel-body">
+                                    <!--Insert  -->
+                                @if(school.contact != null && school.contact.size !=0){
+                                    @for(item <- school.contact){
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h3>Contact 1</h3>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="phone1">Contact Type</label>
+                                                        <input type="text"  name="contact[0].type" value="@item.contactName" placeholder="+2348094227050" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="phone1">Phone 1</label>
+                                                        <input type="text"  name="contact[0].phone[0]" value="@item.phone" placeholder="+2348094227050" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="phone2">Phone 2</label>
+                                                        <input type="text"  name="contact[0].phone[1]" value="@item.phone" placeholder="+2348094227050" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="country">Country</label>
+                                                        <input type="text" name="contact.country" value="@item.country" placeholder="Country" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="state">State</label>
+                                                        <input type="text" name="contact.state" value="@item.state" placeholder="State" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="city">City</label>
+                                                        <input type="text" name="contact.city" value="@item.city" placeholder="City" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="street">Street</label>
+                                                        <input type="text" name="contact.street" value="@item.street" placeholder="Street" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                        <div id="session-5" class="tab-pane">
+                            <div class="panel-body">
+                                    <!--Insert  -->
+                                <div class="row">
+                                    @*<div class="col-sm-4">
+                                        <div class="form-group date_1">
+                                            <label class="control-label" for="status">Academy Year</label>
+                                            <input type="text"  name="academyYear" value="@school.academySessions.iterator().next().academyYear" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label" for="status">Academy StartDate</label>
+                                            <input type="text"  name="academyStartDate" value="@school.academySessions.iterator().next().academyStartDate" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label" for="status">Academy EndDate</label>
+                                            <input type="text"  name="academyEndDate" value="@school.academySessions.iterator().next().academyEndDate" placeholder="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label class="control-label" for="status">Status</label>
+                                            <select name="status" class="form-control required">
+                                                <option value="@school.academySessions.iterator().next().status">@school.academySessions.iterator().next().status</option>
+                                                <option>Choose One</option>
+                                                <option value="Active">Active</option>
+                                                <option value="InActive">InActive</option>
+                                            </select>
+                                        </div>
+                                    </div>*@
+                                </div>
+                                    <!--End Of Insert -->
+                                <div class="row">
+                                    <div class="ibox">
+                                        <div class="ibox-content">
+                                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th data-hide="phone">Academy Year</th>
+                                                        <th data-hide="phone">Academy Start Date</th>
+                                                        <th data-hide="phone">Academy End Date</th>
+                                                        <th data-hide="phone">Status</th>
+                                                        <th data-hide="phone">Modified Date</th>
+                                                        <th class="text-right">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+
+                                                        <td>
+                                                            01
+                                                        </td>
+                                                        <td>
+                                                            12/04/2015-12/04/2016
+                                                        </td>
+                                                        <td>
+                                                            12/04/2015
+                                                        </td>
+                                                        <td>
+                                                            12/04/2016
+                                                        </td>
+                                                        <td>
+                                                            <span class="label label-danger">InActive</span>
+                                                        </td>
+                                                        <td>
+                                                            21/07/2015
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <div class="btn-group">
+                                                                <button class="btn-white btn btn-xs">Edit</button>
+                                                                <button class="btn-white btn btn-xs">Delete</button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="7">
+                                                            <ul class="pagination pull-right"></ul>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="upgrade-6" class="tab-pane">
+                            <div class="panel-body">
+                                    <!--Insert-->
+                                <div class="row">
+                                    <h5>This part of application will be move to Account menu</h5>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="schSchemer">School Schemer</label>
+                                                <select name="schSchemer" class="form-control required">
+                                                    <option value="">Choose One</option>
+                                                    <option value="private">Private</option>
+                                                    <option value="public">Public</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="customer">School Type</label>
+                                                <select name="schSchemer" class="form-control required">
+                                                    <option>Choose One</option>
+                                                    <option value="International">International</option>
+                                                    <option value="Domestic">Domestic</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="customer">Class Type</label>
+                                                <select name="classType" class="form-control required">
+                                                    <option>Choose One</option>
+                                                    <option value="DaySch">Day School</option>
+                                                    <option value="BodingSch">Boding School</option>
+                                                    <option value="Day&BodingSch">Day And Boding School</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="eduGrade">Educational Grade</label>
+                                                <select name="eduGrade" class="form-control required">
+                                                    <option>Choose One</option>
+                                                    <option value="Primary">Primary</option>
+                                                    <option value="Secondary">Secondary</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" for="appPlanePackage">App Plane Package</label>
+                                                <select name="appPlanePackage" class="form-control required">
+                                                    <option>Choose One</option>
+                                                    <option value="Basic">Basic</option>
+                                                    <option value="Professional">Professional</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <!--End Of Insert -->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="submit" name="action" value="insertGrades" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@scripts = {}

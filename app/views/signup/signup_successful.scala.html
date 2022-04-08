@@ -1,0 +1,52 @@
+
+@(subDomain:String, email: String)
+@layout.signup.frame("Quick School Info | SignUp Token Confirmation | School Management System"){
+  <link href="@routes.Assets.versioned("css/emailTemplate.css")" media="all" rel="stylesheet" type="text/css" />
+    <table class="body-wrap">
+      <tr>
+        <td></td>
+        <td class="container" width="600">
+          <div class="content">
+            @helpers._flash.render()
+            <table class="main" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="content-wrap">
+                  <table  cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <img class="img-responsive" src="@routes.Assets.versioned("img/landing/header.jpg")"/>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="content-block">
+                        <h3>Welcome in basic email template</h3>
+                        <p>Dear @subDomain</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="content-block">
+                        Your 14 days demo is activated successfully.
+                        Thank you for signing up for Qusi demo.
+                        We are processing your sample data. You will receive instructions in your inbox soon.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="content-block">
+                        <p>A token code as been send to your email</p>
+                        <p>Please note : The token only last for 7 days</p>
+                        <p>In order to complete your registration you need sign to your email:<a href="www.@email">@email</a></p>
+                      </td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+        <td>Kindly check your spam/junk folder also. In case of any queries, feel free to write to us at info@@qusi.com</td>
+      </tr>
+    </table>
+}

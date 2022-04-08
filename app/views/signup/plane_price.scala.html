@@ -1,0 +1,78 @@
+@**import model_views.signup.AdminStaffEnroll
+(adminStaffEnroll:AdminRegistration)**@
+@layout.signup.frame("Quick School Info | Subscription Plan Price| School Management System"){
+   <link href="@routes.Assets.versioned("css/pricing.css")" rel="stylesheet">
+  <link href="@routes.Assets.versioned("css/hover-min.css")" rel="stylesheet">
+  <!-- PRICING TABLE STYLE 1-->
+  @helper.form(action = controllers.routes.HomeCtr.pricePlane()) {
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6 col-xs-12 float-shadow">
+        <div class="price_table_container">
+          <div class="price_table_heading">Starter</div>
+          <div class="price_table_body">
+            <div class="price_table_row cost warning-bg"><strong>$ 19</strong><span>/Month</span> <span>Per Student</span></div>
+            <div class="price_table_row">1 Website</div>
+            <div class="price_table_row">10 GB Storage</div>
+            <div class="price_table_row">10 GB Bandwidth</div>
+            <div class="price_table_row">10 Email Addresses</div>
+            <div class="price_table_row">Free Backup</div>
+            <div class="price_table_row">Full Time Support</div>
+          </div>
+          <button class="btn btn-warning btn-lg btn-block" name="action" value="Basic" type="submit">Choose</button>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-xs-12 float-shadow">
+        <div class="recommended"><strong><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> BASIC</strong></div>
+        <div class="price_table_container">
+          <div class="price_table_heading">Basic</div>
+          <div class="price_table_body">
+            <div class="price_table_row cost primary-bg"><strong>$ 29</strong><span>/Month</span> <span>Per Student</span></div>
+            <div class="price_table_row">10 Websites</div>
+            <div class="price_table_row">100 GB Storage</div>
+            <div class="price_table_row">100 GB Bandwidth</div>
+            <div class="price_table_row">50 Email Addresses</div>
+            <div class="price_table_row">Free Backup</div>
+            <div class="price_table_row">Full Time Support</div>
+          </div>
+          <button class="btn btn-primary btn-lg btn-block" name="action" value="Starter" type="submit">Choose</button>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-xs-12 float-shadow">
+        <div class="price_table_container">
+          <div class="price_table_heading">Premium</div>
+          <div class="price_table_body">
+            <div class="price_table_row cost success-bg"><strong>$ 39</strong><span>/Month</span> <span>Per Student</span></div>
+            <div class="price_table_row">100 Websites</div>
+            <div class="price_table_row">1 TB Storage</div>
+            <div class="price_table_row">1 TB Bandwidth</div>
+            <div class="price_table_row">100 Email Addresses</div>
+            <div class="price_table_row">Free Backup</div>
+            <div class="price_table_row">Full Time Support</div>
+          </div>
+          <button class="btn btn-success btn-lg btn-block" name="action" value="Professional" type="submit">Choose</button>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-xs-12 float-shadow">
+        <div class="price_table_container">
+          <div class="price_table_heading">Master</div>
+          <div class="price_table_body">
+            <div class="price_table_row cost info-bg"><strong>$ 60</strong><span>/Month</span> <span>Per Student</span></div>
+            <div class="price_table_row">Unlimited Websites</div>
+            <div class="price_table_row">10 TB Storage</div>
+            <div class="price_table_row">100 TB Bandwidth</div>
+            <div class="price_table_row">1000 Email Addresses</div>
+            <div class="price_table_row">Free Backup</div>
+            <div class="price_table_row">Full Time Support</div>
+          </div>
+          <button class="btn btn-info btn-lg btn-block" name="action" value="Unlimited" type="submit">Choose</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- PRICING TABLE STYLE 1-->
+  }
+}

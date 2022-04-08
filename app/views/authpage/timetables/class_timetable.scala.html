@@ -1,0 +1,176 @@
+@import data_services.SchoolServices
+@import models_views.StaffUsers
+@import models.education.config.SchoolConfiguration
+@import models.enum_config._
+@(schConfig: SchoolConfiguration,staffUsers: List[StaffUsers], schoolServices: SchoolServices)
+@import java._;var add = 0;var prd = 0;
+@layout.auth_frame("Class Time Table",scripts, "") {
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Class Time Table Template From</h5>
+          <div class="ibox-tools">
+            <a class="collapse-link">
+              <i class="fa fa-chevron-up"></i>
+            </a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="fa fa-wrench"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+              <li><a href="#">Config option 1</a>
+              </li>
+              <li><a href="#">Config option 2</a>
+              </li>
+            </ul>
+            <a class="close-link">
+              <i class="fa fa-times"></i>
+            </a>
+          </div>
+        </div>
+        <div class="ibox-content">
+        @helpers._flash.render()
+        @helper.form(action = controllers.routes.TimeTableCtrl.addClassTimeTable(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="control-label">Academic Year</label>
+                  <select name="timeTable.academicYear" class="form-control required">
+                    <option value="12 Sep 2016 - 23 Aug 2017">12 Sep 2016 - 23 Aug 2017</option>
+                    <option value="14 Sep 2015 - 18 Aug 2016">14 Sep 2015 - 18 Aug 2016</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="control-label">Grade</label>
+                  <select name="timeTable.grade[]" class="select2_demo_2 form-control required" multiple="select">
+                    <option value="Grade2">Grade2</option>
+                    <option value="Grade3">Grade3</option>
+                    <option value="Grade4">Grade4</option>
+                    <option value="Grade5">Grade5</option>
+                    <option value="Grade6">Grade6</option>
+                    <option value="Grade7">Grade7</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="control-label" >Class</label>
+                  <select name="timeTable.classRoom[]" class="select2_demo_2 form-control required" multiple="select">
+                    <option value="Jss1c">Jss1c</option>
+                    <option value="Jss2a">Jss2a</option>
+                    <option value="Jss2b">Jss2b</option>
+                    <option value="Sss1a">Sss1a</option>
+                    <option value="Sss2a">Sss2a</option>
+                    <option value="Sss2d">Sss2d</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="control-label" >Department</label>
+                  <select name="timeTable.department" class="form-control required">
+                    <option>Choose One</option>
+                    <option value="Science">Science</option>
+                    <option value="Art">Art</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Music">Music</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Social Study">Social Study</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-sm-12">
+                    <label>Department</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <textarea name="timeTable.department" class="form-control" rows="2"></textarea>
+                    </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover dataTables-example" >
+                @for(item <- schoolServices.find().workingDays){
+                  <tr>
+                    <td>
+                      <div class="days">
+                        <span>@item</span>
+                        <input class="days" type="hidden" name="subOfTheDays[@add].days" value="@item">
+                      </div>
+                    </td>
+                    @if(schConfig.periods != null){
+                      @for( itemp <- schConfig.periods){
+                        @if(itemp.isBreak.equals("Yes")){
+                          <td>
+                            <div class="col-sm-1 break_box">
+                              <div class="break">
+                                <input type="hidden" name="subOfTheDays[@add].subjectPeriods[@prd].periodId" value="@itemp.id">
+                                <input type="hidden" name="subOfTheDays[@add].subjectPeriods[@prd].periodMode" value="@PeriodMode.BRAKE.getValue">
+                                <strong class="break-label">@itemp.period</strong>
+                                <strong class="break-label">Break</strong>
+                                <span class="time-period">@itemp.startTime</span>
+                                <span class="time-period">@itemp.endTime</span>
+                              </div>
+                            </div>
+                          </td>
+                        }else{
+                          <td>
+                            <div class="col-sm-3 sub_box">
+                              <span class="time-period">@itemp.startTime - @itemp.endTime</span>
+                              <input type="hidden" name="subOfTheDays[@add].subjectPeriods[@prd].periodId" value="@itemp.id">
+                                <input type="hidden" name="subOfTheDays[@add].subjectPeriods[@prd].periodMode" value="@PeriodMode.TEACHING.getValue">
+                                @if(schConfig.subjects != null || schConfig.subjects.size() != 0){
+                                  <select style="width: 133px;" class="sub_input" name="subOfTheDays[@add].subjectPeriods[@prd].subjectId">
+                                  <option>Choose Subject</option>
+                                  @for(item <- schConfig.subjects){
+                                    <option value="@item.id">@item.subjectName (@item.subShortName)</option>
+                                  }
+                                  </select>
+                                }else{
+                                  <a href="#">Click here to add subject</a>
+                                }
+                              @if(staffUsers != null || staffUsers.size() !=0) {
+                                <select style="width: 133px;" class="sub_input" name="subOfTheDays[@add].subjectPeriods[@prd].teacherId">
+                                <option>Choose Teacher</option>
+                                @for(item <- staffUsers) {
+                                  <option value="@item.id">@item.name @item.id</option>
+                                }
+                                </select>
+                              }else{
+                                <a href="#">Click here to add a staff</a>
+                              }
+                            </div>
+                          </td>
+
+                        }
+                        @(prd = prd +1)
+                      }
+                    }
+                  </tr>
+                  @(add = add +1)
+                  @(prd = 0)
+                }
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-white">Close</button>
+              <button type="submit" name="action" value="insertToFee" class="btn btn-primary">Save</button>
+            </div>
+        }
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@scripts ={
+    <script>
+            $(document).ready(function(){
+
+                $(".select2_demo_2").select2({
+                    placeholder: "Select your options",
+                    allowClear: true
+                });
+            });
+    </script>
+}

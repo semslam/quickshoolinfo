@@ -1,0 +1,256 @@
+@import api.util.DateFormat
+@import models.education.config.Term
+@(termList :List[Term])
+@layout.auth_frame("Term Form and Tables",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+      <h2><i class="fa fa-history fa-1x"></i> Term</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="@controllers.routes.HomeCtr.pageDashboard()">Dashboard</a>
+        </li>
+        <li>
+          <a href="@controllers.sch_config.routes.SchConfigCtr.getSchConfigWorkFllow()">Configuration</a>
+        </li>
+        <li class="active">
+          <strong>Term</strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="ibox-content m-b-sm border-bottom">
+    @helpers._flash.render()
+    @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertTerm(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label class="control-label" for="product_name">Term Name</label>
+          <input type="text" id="product_name" name="name"  placeholder="Term Name" class="form-control">
+        </div>
+      </div>
+      <div class="form-group col-md-3">
+        <label>Academic Session</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+          <select name="academicSession" class="form-control required">
+            <option>Select One</option>
+            <option value="1stTerm">1stTerm</option>
+            <option value="2ndTerm">2ndTerm</option>
+            <option value="3ndTerm">3ndTerm</option>
+            <option value="4thTerm">4thTerm</option>
+            <option value="5thTerm">5thTerm</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-md-2 data_1">
+        <label>Start Date</label>
+        <div class="input-group date">
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          <input  type="text" name="start" class="form-control required" id="" value="">
+        </div>
+      </div>
+      <div class="form-group col-md-2 data_1">
+        <label>End Date</label>
+        <div class="input-group date">
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          <input  type="text" name="end" class="form-control required" id="" value="">
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label class="control-label" for="quantity">Weeks</label>
+          <input type="text" id="quantity" name="weeks" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-white" data-dismiss="modal">Close</button>
+      <button type="submit" name="action" value="insertTerm" class="btn btn-primary">Save changes</button>
+    </div>
+    }
+  </div>
+
+  <div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Class Room List</h5>
+            <div class="ibox-tools">
+              <a class="collapse-link" href="@controllers.sch_config.routes.SchConfigCtr.termFormAndList()">
+                <p class="btn btn-primary">Refresh</p>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-content">
+            <div class="ibox-content m-b-sm border-bottom">
+              <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                <thead>
+                  <tr>
+                    <th data-hide="phone">Name Term</th>
+                    @*<th data-hide="phone">Academic Session</th>*@
+                    <th data-hide="phone">Start Date</th>
+                    <th data-hide="phone">End Date</th>
+                    <th data-hide="phone,tablet">Weeks</th>
+                    <th data-hide="phone">Modified Date</th>
+                    <th class="text-right">Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  @if(termList.size() != 0 && termList != null ){
+                    @for(item <- termList){
+                      <tr>
+                        <td>
+                          @item.name
+                        </td>
+                        @*<td>
+                        @item.academicSession;
+                        </td>*@
+                        <td>
+                          @DateFormat.getDateAndMounthFormat(item.start)
+                        </td>
+                        <td>
+                          @DateFormat.getDateAndMounthFormat(item.end)
+                        </td>
+                        <td>
+                          @item.weeks
+                        </td>
+                        <td>
+                          @DateFormat.getDateAndMounthFormat(item.lastModified)
+                        </td>
+                        <td class="text-right">
+                          <div class="btn-group">
+                            <button class="btn-success btn btn-sm" data-toggle="modal" data-target="#@item.id">Edit</button>
+                            <button class="btn btn-danger btn-sm demo1">Delete</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <div style="overflow-x:hidden;" class="modal inmodal fade in" id="@item.id" tabindex="-1" role="dialog" aria-hidden="true" style="display: block;">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                              <h4 class="modal-title">@item.name</h4>
+                              <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                            </div>
+                            <div class="modal-body">
+                              @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertTerm(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+                                <div class="row">
+                                  <input type="hidden" name="id" value="@item.id">
+                                  <div class="col-sm-3">
+                                    <div class="form-group">
+                                      <label class="control-label" for="product_name">Term Name</label>
+                                      <input type="text" id="product_name" name="name" value="@item.name" placeholder="Grade Name" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-3">
+                                    <label>Academic Session</label>
+                                    <div class="input-group date">
+                                      <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                                      <select name="academicSession" class="form-control required">
+                                        @if(item.academicSession != null){
+                                          <option value="@item.academicSession">@item.academicSession</option>
+                                        }else{
+                                          <option>Select One</option>
+                                        }
+                                        <option value="1stTerm">1stTerm</option>
+                                        <option value="2ndTerm">2ndTerm</option>
+                                        <option value="3ndTerm">3ndTerm</option>
+                                        <option value="4thTerm">4thTerm</option>
+                                        <option value="5thTerm">5thTerm</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-2 data_1">
+                                    <label>Start Date</label>
+                                    <div class="input-group date">
+                                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                      <input  type="text" name="start" class="form-control required" id="" value="@DateFormat.getDateFormat(item.start)">
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-2 data_1">
+                                    <label>End Date</label>
+                                    <div class="input-group date">
+                                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                      <input  type="text" name="end" class="form-control required" id="" value="@DateFormat.getDateFormat(item.end)">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-2">
+                                    <div class="form-group">
+                                      <label class="control-label" for="quantity">Weeks</label>
+                                      <input type="text" id="quantity" name="weeks" value="@item.weeks" placeholder="" class="form-control">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                              <button type="submit" name="action" value="updateTerm" class="btn btn-primary">Save changes</button>
+                            </div>
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  }
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="7">
+                      <ul class="pagination pull-right"></ul>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@scripts ={
+    <!-- Peity -->
+  <script src="@routes.Assets.versioned("js/plugins/peity/jquery.peity.min.js")"></script>
+  <script src="@routes.Assets.versioned("js/demo/peity-demo.js")"></script>
+
+  <script src="@routes.Assets.versioned("js/plugins/sweetalert/sweetalert.min.js")"></script>
+
+  <script>
+
+          $(document).ready(function () {
+
+            $('.demo1').click(function () {
+              swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this class room!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        cancelButtonText: "No, cancel plx!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false },
+                      function (isConfirm) {
+                        if (isConfirm) {
+                          swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                        } else {
+                          swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                      });
+            });
+
+            $('.data_1 .input-group.date').datepicker({
+              todayBtn: "linked",
+              keyboardNavigation: false,
+              forceParse: false,
+              calendarWeeks: true,
+              autoclose: true,
+              format: "yyyy-mm-dd"
+            });
+
+          });
+  </script>
+}

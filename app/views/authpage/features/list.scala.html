@@ -1,0 +1,93 @@
+@import  models.application.Feature
+@(featureList : List[Feature])
+@layout.auth_frame("Feature List",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+      <h2>Feature Data List</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="index-2.html">Feature</a>
+        </li>
+        <li class="active">
+          <strong>List</strong>
+        </li>
+      </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Data List</h5>
+            <div class="ibox-tools">
+
+            </div>
+          </div>
+          <div class="ibox-content">
+            <div class="">
+              <a href="#" class="btn btn-primary ">Add a new row</a>
+            </div>
+            <table class="table table-striped table-bordered table-hover " id="editable" >
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>App Module</th>
+                  <th>Module</th>
+                  <th>Menu Name</th>
+                  <th>Support Status</th>
+                  <th>Version</th>
+                  <th>Modified Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if(featureList.size() != 0 && featureList != null){
+                  @for(item <- featureList){
+                    <tr class="gradeA">
+                      <td>1</td>
+                      <td class="text-center">@item.appModule</td>
+                      <td class="text-center">
+                        @if(item.subModule.size != 0 && item.subModule != null){
+                          @for(subModule <- item.subModule){
+                            <p>@subModule</p>
+                          }
+                        }
+                      </td>
+                      <td class="text-center">
+                          @item.menuName
+                      </td>
+                      <td class="text-center">@item.support</td>
+                      <td class="text-center">@item.version</td>
+                      <td class="text-center">@item.modifiedDate</td>
+                      <td class="text-center ">
+                        <a class="btn btn-success" href="#">
+                          <i class="fa fa-search-plus "></i>
+                        </a>
+                        <a class="btn btn-info" href="@controllers.routes.FeatureCtr.findFeatureById(item.id)">
+                          <i class="fa fa-contact"></i>
+                        </a>
+                        <a class="btn btn-danger" href="@controllers.routes.FeatureCtr.deleteFeature(item.id)">
+                          <i class="fa fa-trash-o"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@scripts = {
+
+}

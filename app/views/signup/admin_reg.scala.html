@@ -1,0 +1,388 @@
+
+@layout.signup.frame("School Management System | Quick School Info | Registration Form",scripts){
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+      <h2>QUSI REGISTRATION</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a>QUSI</a>
+        </li>
+        <li>
+          <a>Sign Up</a>
+        </li>
+        <li class="active">
+          <strong> Registration</strong>
+        </li>
+      </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox">
+          <div class="ibox-title">
+            <h5>Admin and School Registration Form</h5>
+          </div>
+          <div class="ibox-content">
+            <div class="row">
+              @helpers._flash.render()
+              @helper.form(action = controllers.routes.HomeCtr.adminRegistration(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+                <h1>Admin Info</h1>
+                <fieldset>
+                  <div class="row">
+                    <h2>Personal Information</h2>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <h3> Upload Image </h3>
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                          <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                          <div class="btn btn-primary btn-file">
+                            <span>Upload</span>
+                            <input type="file" name="image">
+                          </div>
+                          <a href="#" class="btn btn-danger" data-dismiss="fileinput">Remove</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                      <div class="form-group col-md-4">
+                        <label>Title</label>
+                        <div class="input-group date">
+                          <span class="input-group-addon"><i class="fa fa-certificate"></i></span>
+                          <select name="title" class="form-control required">
+                            <option>Select One</option>
+                            <option value="Mr">Mr</option>
+                            <option value="Miss">Miss</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>First Name</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                          <input  type="text" name="first_name" class="form-control required" >
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Last Name</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                          <input  type="text" name="last_name" class="form-control required" >
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Gender</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+                          <select name="gender" class="form-control required">
+                            <option>Choose One</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4 data_1" >
+                        <label>Date Of Birth</label>
+                        <div class="input-group date">
+                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                          <input type="text" name="dob" class="form-control required">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Phone Number</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                          <input type="text" name="contact_staffs[0].phone[0]" class="form-control required">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Designation</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                          <select name="position" class="form-control required">
+                            <option>Choose One</option>
+                            <option value="ItManager">ItManager</option>
+                            <option value="Princepal">Principal</option>
+                            <option value="Heard Master">Heard Master</option>
+                            <option value="Agent">Agent</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Password</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                          <input id="password" type="password" name="password" class="form-control required"  aria-required="true">
+                        </div>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label>Repeat Password</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                            <input id="confirm" type="password" name="re_password" class="form-control required" aria-required="true">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <h1>School</h1>
+                <fieldset>
+                  <h2>School Information</h2>
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                      <label>School Name</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-university"></i></span>
+                        <input type="text" name="school_name" class="form-control required" >
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>School Email</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input type="text" name="email" class="form-control required" >
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>Approve Number </label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-thumbs-up"></i></span>
+                        <input type="text" name="approvedNum" class="form-control required" >
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>Religion</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-moon-o" ></i></span>
+                        <select name="believe" class="form-control">
+                          <option>Choose One</option>
+                          <option value="Islam">Islam</option>
+                          <option value="Christain">Christain</option>
+                          <option value="Free Religion">Free Religion</option>
+                          <option value="Others">Others</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>Educational Grade</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-graduation-cap" ></i></span>
+                        <select name="believe" class="form-control required">
+                          <option>Choose One</option>
+                          <option value="KJ-PRIMARY">KJ-PRIMARY</option>
+                          <option value="HIGH-SCHOOL">HIGH-SCHOOL</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>Educational Model</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-sitemap" ></i></span>
+                        <select name="eduMode" class="form-control required">
+                          <option>Choose One</option>
+                          <option value="DaySch">Day School</option>
+                          <option value="BodingSch">Boding School</option>
+                          <option value="Day&BodingSch">Day And Boding School</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>School Type</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-university" ></i></span>
+                        <select name="schType" class="form-control required">
+                          <option>Choose One</option>
+                          <option value="International">International</option>
+                          <option value="Domestic">Domestic</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>School Website</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-globe" ></i></span>
+                        <input type="text" name="website" class="form-control" >
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>School Logo</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-picture-o" ></i></span>
+                        <input type="file" name="schLogo" class="form-control" >
+                      </div>
+                    </div>
+
+                  </div>
+                </fieldset>
+
+                <h1 >Contact</h1>
+                <fieldset>
+                  <h1>School Contact</h1>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group col-lg-4">
+                        <label>Country</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-moon-o" ></i></span>
+                          <input type="text" name="contact[0].country" class="form-control required" >
+                        </div>
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>State</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-map-marker" ></i></span>
+                          <input type="text" name="contact[0].state" class="form-control required" >
+                        </div>
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>City</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-map-signs" ></i></span>
+                          <input type="text" name="contact[0].city" class="form-control required" >
+                        </div>
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>Zip code</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-envelope-open" ></i></span>
+                          <input type="text" name="contact[0].zipCode" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>Fax</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-fax" ></i></span>
+                          <input type="text" name="contact[0].fax" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>Phone Number</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-mobile" ></i></span>
+                          <input type="text" name="contact[0].phone" class="form-control required">
+                        </div>
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label>Email Address</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-envelope" ></i></span>
+                          <input type="text" name="contact[0].email" class="form-control required">
+                        </div>
+                      </div>
+                      <div class="form-group col-lg-6">
+                        <label>Street</label>
+                        <textarea name="contact[0].street" class="form-control required" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <h1 id="form-h-3" tabindex="-1" class="title">Preview</h1>
+                <fieldset>
+                  <h2>Preview Info</h2>
+                  <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required" aria-required="true"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+                </fieldset>
+              }
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+  @scripts = {
+      <!-- Mainly scripts -->
+    <script>
+            $(document).ready(function(){
+              $("#wizard").steps();
+              $("#form").steps({
+                bodyTag: "fieldset",
+                onStepChanging: function (event, currentIndex, newIndex)
+                {
+                  // Always allow going backward even if the current step contains invalid fields!
+                  if (currentIndex > newIndex)
+                  {
+                    return true;
+                  }
+
+                  // Forbid suppressing "Warning" step if the user is to young
+                  if (newIndex === 3 && Number($("#age").val()) < 18)
+                  {
+                    return false;
+                  }
+
+                  var form = $(this);
+
+                  // Clean up if user went backward before
+                  if (currentIndex < newIndex)
+                  {
+                    // To remove error styles
+                    $(".body:eq(" + newIndex + ") label.error", form).remove();
+                    $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                  }
+
+                  // Disable validation on fields that are disabled or hidden.
+                  form.validate().settings.ignore = ":disabled,:hidden";
+
+                  // Start validation; Prevent going forward if false
+                  return form.valid();
+                },
+                onStepChanged: function (event, currentIndex, priorIndex)
+                {
+                  // Suppress (skip) "Warning" step if the user is old enough.
+                  if (currentIndex === 2 && Number($("#age").val()) >= 18)
+                  {
+                    $(this).steps("next");
+                  }
+
+                  // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                  if (currentIndex === 2 && priorIndex === 3)
+                  {
+                    $(this).steps("previous");
+                  }
+                },
+                onFinishing: function (event, currentIndex)
+                {
+                  var form = $(this);
+
+                  // Disable validation on fields that are disabled.
+                  // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                  form.validate().settings.ignore = ":disabled";
+
+                  // Start validation; Prevent form submission if false
+                  return form.valid();
+                },
+                onFinished: function (event, currentIndex)
+                {
+                  var form = $(this);
+
+                  // Submit form input
+                  form.submit();
+                }
+              }).validate({
+                errorPlacement: function (error, element)
+                {
+                  element.before(error);
+                },
+                rules: {
+                  confirm: {
+                    equalTo: "#password"
+                  }
+                }
+              });
+              $('.data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "yyyy-mm-dd"
+              });
+            });
+    </script>
+  }

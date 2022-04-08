@@ -1,0 +1,142 @@
+@import models.education.config.ClassRoom
+@import models.education.config.Grade
+@import models.education.config.ClassRoomType
+@import models.education.config.Department
+@(form: Form[ClassRoom], grades: List[Grade], classRoomTypes: List[ClassRoomType], departments: List[Department])
+@layout.auth_frame("Classroom Form",scripts, "") {
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+      <h2><i class="fa fa-edit (alias) fa-1x"></i> ClassRoom</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="@controllers.routes.HomeCtr.pageDashboard()">Dashboard</a>
+        </li>
+        <li>
+          <a href="@controllers.sch_config.routes.SchConfigCtr.getSchConfigWorkFllow()">Configuration</a>
+        </li>
+        <li class="active">
+          <strong>ClassRoom</strong>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>New Class Room</h5>
+            <div class="ibox-tools">
+              <a class="" href="@controllers.sch_config.routes.SchConfigCtr.listClassRooms()">
+                <p class="btn btn-primary"> ClassRoom Table</p>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-content">
+
+            <div class="ibox-content m-b-sm border-bottom">
+              @helpers._flash.render()
+              @helper.form(action = controllers.sch_config.routes.SchConfigCtr.insertClassRoom(), 'enctype -> "application/x-www-form-urlencoded", 'role -> "from",'class -> "wizard-big", 'id -> "form") {
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label" for="status">Class Name</label>
+                    <input type="text" id="status" name="className" value="@form.get().className" placeholder="Class Name" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label" for="ClassType">Class Room Type</label>
+                    @if(classRoomTypes != null && classRoomTypes.size() != 0){
+                      <select name="classType" class="form-control required">
+                        <option>---Choose One---</option>
+                        @for(item <- classRoomTypes) {
+                          <option value="@item.id">@item.name (@item.abbreviation)</option>
+                        }
+                      </select>
+                    }else{
+                      <a href="@controllers.sch_config.routes.SchConfigCtr.listClassRoomtype()" class="btn btn-primary">No ClassRoomTypes Record, Click to Create</a>
+                    }
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label" for="order_id">Class Grade</label>
+                    @if(grades != null && grades.size() != 0){
+                      <select name="classGrade" class="form-control required">
+                        <option>---Choose One---</option>
+                      @for(item <- grades) {
+                        <option value="@item.id">@item.name (@item.gradeCode)</option>
+                      }
+                      </select>
+                    }else{
+                      <a href="@controllers.sch_config.routes.SchConfigCtr.gradeFormAndList()" class="btn btn-primary">No Grade Record, Click to Create</a>
+                    }
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label" for="order_id">Class Department</label>
+                    @if(departments != null && departments.size() != 0){
+                      <select name="classDepartment" class="form-control required">
+                        <option>---Choose One---</option>
+                        @for(item <- departments) {
+                          <option value="@item._id">@item.name (@item.abbreviation)</option>
+                        }
+                      </select>
+                    }else{
+                      <a href="@controllers.sch_config.routes.SchConfigCtr.listDepartment()" class="btn btn-primary">No Grade Departments, Click to Create</a>
+                    }
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label" for="order_id">Building Name</label>
+                    <input type="text" id="order_id" name="building"  placeholder="Student Capacity " class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label" for="customer">Floor</label>
+                    <input type="text" id="customer" name="floor" placeholder="Floor eg 1st floor, 2nd Floor" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label" for="customer">Capacity</label>
+                    <input type="text" id="customer" name="capacity" placeholder="Capacity" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label" for="SeatNumber">Number Of Seat</label>
+                    <input type="text" id="status" name="numberOfSite" placeholder="Number Of Seat eg.. 6,38" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label" for="StudentCapacity">Student Capacity</label>
+                    <input type="text" id="status" name="stdCapacity" placeholder="Should not be more than 50" class="form-control">
+                  </div>
+                </div>
+              </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                      <button  type="submit" name="action" value="insertClass" class="btn btn-primary">Submit</button>
+                      <button  type="submit" name="action" value="insertClassToForm" class="btn btn-info">Submit back to form </button>
+                  </div>
+              }
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+}
+@scripts = {}

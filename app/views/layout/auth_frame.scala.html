@@ -1,0 +1,83 @@
+@(title: String, scripts: Html = Html(""), bodyClass: String = "")(content: Html)
+<!-- Check if the page is on session if not redirect to login page -->
+@if( session().get("connected") != null ){
+  <!DOCTYPE html>
+  <html lang="en">
+
+    <head>
+      @* Here's where we render the page title `String`. *@
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>@title</title>
+        <!-- Bootstrap core CSS -->
+      <link href="@routes.Assets.versioned("css/bootstrap.min.css")" rel="stylesheet">
+        <!-- Animation CSS -->
+      <link href="@routes.Assets.versioned("css/animate.css")" rel="stylesheet">
+      <link href="@routes.Assets.versioned("font-awesome/css/font-awesome.min.css")" rel="stylesheet">
+        <!-- Custom styles for this template -->
+      <link href="@routes.Assets.versioned("css/style.css")" rel="stylesheet">
+        <!-- Sweet Alert -->
+      <link href="@routes.Assets.versioned("css/plugins/sweetalert/sweetalert.css")" rel="stylesheet">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!-- Data Tables -->
+      <link href="@routes.Assets.versioned("css/plugins/dataTables/dataTables.bootstrap.css")" rel="stylesheet">
+      <link href="@routes.Assets.versioned("css/plugins/dataTables/dataTables.responsive.css")" rel="stylesheet">
+      <link href="@routes.Assets.versioned("css/plugins/dataTables/dataTables.tableTools.min.css")" rel="stylesheet">
+      <link href="@routes.Assets.versioned("css/plugins/clockpicker/clockpicker.css")" rel="stylesheet">
+      <link href="@routes.Assets.versioned("css/plugins/datapicker/datepicker3.css")" rel="stylesheet">
+      <link href="@routes.Assets.versioned("css/plugins/iCheck/custom.css")" rel="stylesheet">
+      <link href="@routes.Assets.versioned("css/plugins/chosen/chosen.css")" rel="stylesheet">
+      <link href="@routes.Assets.versioned("css/plugins/datapicker/datepicker3.css")" rel="stylesheet">
+      <link href="@routes.Assets.versioned("css/plugins/steps/jquery.steps.css")" rel="stylesheet">
+      <link href="@routes.Assets.versioned("css/plugins/select2/select2.min.css")" rel="stylesheet">
+    </head>
+    <body>
+      <div id="wrapper">
+        @* And here's where we render the `Html` object containing
+        * the page content. *@
+        @*menu*@
+        @views.html.layout.auth_side_menu.render()
+        <div id="page-wrapper" class="gray-bg">
+          @*header *@
+          @views.html.layout.auth_header.render()
+          @*content*@
+          @content
+          @*footer*@
+          @views.html.layout.auth_footer.render()
+          @*right side menu*@
+          @views.html.layout.auth_right_menu.render()
+        </div>
+      </div>
+        <!-- Mainly scripts -->
+      <script src="@routes.Assets.versioned("js/jquery-2.1.1.js")"></script>
+      <script src="@routes.Assets.versioned("js/bootstrap.min.js")"></script>
+      <script src="@routes.Assets.versioned("js/plugins/metisMenu/jquery.metisMenu.js")"></script>
+      <script src="@routes.Assets.versioned("js/plugins/slimscroll/jquery.slimscroll.min.js")"></script>
+        <!-- Custom and plugin javascript -->
+      <script src="@routes.Assets.versioned("js/inspinia.js")"></script>
+      <script src="@routes.Assets.versioned("js/plugins/pace/pace.min.js")"></script>
+        <!-- jQuery UI -->
+      <script src="@routes.Assets.versioned("js/plugins/jquery-ui/jquery-ui.min.js")"></script>
+        <!-- Data Tables -->
+      <script src="@routes.Assets.versioned("js/plugins/dataTables/jquery.dataTables.js")"></script>
+      <script src="@routes.Assets.versioned("js/plugins/dataTables/dataTables.bootstrap.js")"></script>
+      <script src="@routes.Assets.versioned("js/plugins/dataTables/dataTables.responsive.js")"></script>
+      <script src="@routes.Assets.versioned("js/plugins/dataTables/dataTables.tableTools.min.js")"></script>
+      <script src="@routes.Assets.versioned("js/plugins/datapicker/bootstrap-datepicker.js")"></script>
+      <script src="@routes.Assets.versioned("js/plugins/clockpicker/clockpicker.js")"></script>
+
+      <script src="@routes.Assets.versioned("js/plugins/staps/jquery.steps.min.js")"></script>
+        <!-- Jquery Validate -->
+      <script src="@routes.Assets.versioned("js/plugins/validate/jquery.validate.min.js")"></script>
+        <!-- Image cropper -->
+      <script src="@routes.Assets.versioned("js/plugins/cropper/cropper.min.js")"></script>
+        <!-- Select2 -->
+      <script src="@routes.Assets.versioned("js/plugins/select2/select2.full.min.js")"></script>
+        <!-- Latest compiled and minified CSS -->
+      <script src="@routes.Assets.versioned("http://jasny.net/bootstrap/dist/js/jasny-bootstrap.min.js")"></script>
+      @scripts
+    </body>
+  </html>
+}else{
+  @views.html.layout.client_page.login.render()
+}
