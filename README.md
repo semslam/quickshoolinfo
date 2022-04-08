@@ -1,0 +1,2 @@
+# quickshoolinfo
+School management system
